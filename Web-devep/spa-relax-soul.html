@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa Relax Soul – Monterrey</title>
+<meta name="description" content="Spa Relax Soul Monterrey – Masajes corporales, terapias energéticas, reiki, biomagnetismo y sanación espiritual. El spa para consentirte.">
+<meta property="og:title" content="Spa Relax Soul – Monterrey">
+<meta property="og:description" content="Bienestar del cuerpo y el alma. Masajes, reiki, chakras y más en Monterrey.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4A2D7A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --morado: #4A2D7A;
+    --morado-claro: #6B48A8;
+    --lavanda: #E8E0F5;
+    --dorado: #C8A96E;
+    --blanco: #FFFFFF;
+    --crema: #FAF8FF;
+    --gris: #6B6B6B;
+    --texto: #1E1428;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; color: var(--texto); background: var(--blanco); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(74,45,122,0.1);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--morado); letter-spacing: 0.06em; text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--texto); font-size: 0.84rem; font-weight: 400; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--morado); }
+  .btn-cita { background: var(--morado); color: var(--blanco) !important; padding: 0.55rem 1.4rem; border-radius: 30px; font-size: 0.8rem !important; font-weight: 500 !important; text-decoration: none; transition: background 0.2s !important; }
+  .btn-cita:hover { background: var(--morado-claro) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0d0820 0%, #1e1040 40%, #2d1a5e 70%, #4A2D7A 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(200,169,110,0.08) 0%, transparent 60%);
+  }
+  .stars-bg {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .star { position: absolute; background: var(--blanco); border-radius: 50%; animation: twinkle 3s infinite alternate; }
+  @keyframes twinkle { 0% { opacity: 0.1; } 100% { opacity: 0.6; } }
+  .hero-content { position: relative; z-index: 1; max-width: 720px; }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1.4rem; display: block; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,7vw,5.5rem); font-weight: 300; color: var(--blanco); line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--dorado); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.68); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.9; font-weight: 300; }
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--dorado); color: var(--blanco); text-decoration: none; padding: 0.9rem 2.4rem; font-size: 0.84rem; font-weight: 500; letter-spacing: 0.1em; border-radius: 30px; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #b89058; transform: translateY(-2px); }
+  .btn-outline { border: 1px solid rgba(255,255,255,0.35); color: var(--blanco); text-decoration: none; padding: 0.9rem 2.4rem; font-size: 0.84rem; font-weight: 400; border-radius: 30px; transition: background 0.2s; display: inline-block; }
+  .btn-outline:hover { background: rgba(255,255,255,0.07); }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.12); }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; color: var(--dorado); display: block; line-height: 1; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.4rem; display: block; }
+
+  /* SECCIÓN GENÉRICA */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--morado); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 400; color: var(--texto); margin-bottom: 1rem; line-height: 1.2; }
+  .section-sub { color: var(--gris); line-height: 1.9; max-width: 580px; font-size: 0.95rem; }
+  .divider { width: 48px; height: 1px; background: var(--dorado); margin: 1.5rem 0; }
+
+  /* TERAPIAS */
+  .terapias-section { background: var(--crema); }
+  .terapias-header { text-align: center; margin-bottom: 3.5rem; }
+  .terapias-header .section-sub, .terapias-header .divider { margin: 1rem auto; }
+  .terapias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .terapia-card {
+    background: var(--blanco); border-radius: 20px; padding: 2.5rem 2rem; text-align: center;
+    box-shadow: 0 2px 24px rgba(74,45,122,0.06); border: 1px solid rgba(74,45,122,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .terapia-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(74,45,122,0.14); }
+  .terapia-icon { font-size: 3rem; display: block; margin-bottom: 1.2rem; }
+  .terapia-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--texto); }
+  .terapia-card p { font-size: 0.85rem; color: var(--gris); line-height: 1.8; margin-bottom: 1.5rem; }
+  .terapia-duration { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--morado); background: var(--lavanda); padding: 0.3rem 1rem; border-radius: 20px; display: inline-block; }
+
+  /* EXPERIENCIA */
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .exp-visual { aspect-ratio: 1; background: linear-gradient(135deg, #1e1040, #4A2D7A); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .exp-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .exp-num { width: 44px; height: 44px; background: linear-gradient(135deg, var(--morado), var(--morado-claro)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--blanco); flex-shrink: 0; }
+  .exp-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .exp-item p { font-size: 0.83rem; color: var(--gris); line-height: 1.6; }
+
+  /* ENERGÉTICAS */
+  .energy-section { background: linear-gradient(135deg, #1e1040, #2d1a5e); }
+  .energy-header { text-align: center; margin-bottom: 3.5rem; }
+  .energy-header .section-sub, .energy-header .divider { margin: 1rem auto; background: var(--dorado); }
+  .energy-section .section-label { color: var(--dorado); }
+  .energy-section .section-title { color: var(--blanco); }
+  .energy-section .section-sub { color: rgba(255,255,255,0.6); }
+  .energy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .energy-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; }
+  .energy-item:hover { background: rgba(255,255,255,0.1); }
+  .energy-emoji { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+  .energy-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--blanco); margin-bottom: 0.5rem; }
+  .energy-item p { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  /* RESEÑAS */
+  .reviews-section { background: var(--crema); }
+  .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+  .reviews-header .section-sub, .reviews-header .divider { margin: 1rem auto; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .review-card { background: var(--blanco); padding: 2rem; border-radius: 16px; border: 1px solid rgba(74,45,122,0.08); }
+  .stars { color: var(--dorado); font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.88rem; color: var(--gris); line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; }
+  .review-author strong { font-size: 0.85rem; display: block; }
+  .review-author span { font-size: 0.75rem; color: var(--gris); }
+
+  /* UBICACIÓN */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .map-box { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--lavanda), #d4c8f0); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+  .loc-list { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 2rem; }
+  .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--morado), var(--morado-claro)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .loc-text strong { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: var(--gris); line-height: 1.6; display: block; }
+  .loc-text a { color: var(--morado); text-decoration: none; }
+  .loc-text a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #0d0820; color: rgba(255,255,255,0.65); padding: 4rem 2rem 2rem; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; color: var(--lavanda); }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.5); }
+  .footer-col h5 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--blanco); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1100px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .terapias-grid, .energy-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .exp-grid, .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Relax Soul</a>
+  <ul class="nav-links">
+    <li><a href="#terapias">Terapias</a></li>
+    <li><a href="#energeticas">Terapias Energéticas</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-cita">Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="stars-bg">
+    <div class="star" style="width:2px;height:2px;top:10%;left:15%;animation-delay:0s;"></div>
+    <div class="star" style="width:1px;height:1px;top:25%;left:70%;animation-delay:0.5s;"></div>
+    <div class="star" style="width:2px;height:2px;top:60%;left:30%;animation-delay:1s;"></div>
+    <div class="star" style="width:1px;height:1px;top:80%;left:80%;animation-delay:1.5s;"></div>
+    <div class="star" style="width:2px;height:2px;top:40%;left:90%;animation-delay:0.8s;"></div>
+    <div class="star" style="width:1px;height:1px;top:70%;left:5%;animation-delay:0.3s;"></div>
+  </div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Monterrey, N.L. · Bienestar holístico</span>
+    <h1>Sana tu cuerpo,<br>eleva tu <em>alma</em></h1>
+    <p class="hero-sub">Un oasis de paz en Monterrey. Masajes terapéuticos, reiki, biomagnetismo y terapias energéticas para el bienestar integral de tu ser.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary">Reservar terapia</a>
+      <a href="#terapias" class="btn-outline">Explorar servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Clientes atendidos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Terapias disponibles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Calificación Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERAPIAS -->
+<section id="terapias" class="terapias-section">
+  <div class="container">
+    <div class="terapias-header">
+      <p class="section-label">Nuestras especialidades</p>
+      <h2 class="section-title">Terapias Corporales</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Cada terapia está diseñada para restablecer el equilibrio entre cuerpo y mente. Técnicas milenarias en manos expertas.</p>
+    </div>
+    <div class="terapias-grid">
+      <div class="terapia-card">
+        <span class="terapia-icon">🤲</span>
+        <h3>Masaje Relajante</h3>
+        <p>Técnicas suaves de effleurage y amasamiento para liberar tensión muscular y lograr una relajación profunda del cuerpo y la mente.</p>
+        <span class="terapia-duration">60 – 90 min</span>
+      </div>
+      <div class="terapia-card">
+        <span class="terapia-icon">💆</span>
+        <h3>Masaje Terapéutico</h3>
+        <p>Enfocado en zonas de tensión específica, contracturas y dolores musculares. Combinación de técnicas de tejido profundo.</p>
+        <span class="terapia-duration">60 – 90 min</span>
+      </div>
+      <div class="terapia-card">
+        <span class="terapia-icon">🪨</span>
+        <h3>Masaje con Piedras Calientes</h3>
+        <p>Piedras de basalto volcánico calentadas para relajar los músculos profundos y mejorar la circulación sanguínea.</p>
+        <span class="terapia-duration">90 min</span>
+      </div>
+      <div class="terapia-card">
+        <span class="terapia-icon">🌺</span>
+        <h3>Masaje Aromaterapia</h3>
+        <p>Combinación de técnicas de masaje con aceites esenciales terapéuticos seleccionados según tus necesidades específicas.</p>
+        <span class="terapia-duration">60 – 90 min</span>
+      </div>
+      <div class="terapia-card">
+        <span class="terapia-icon">🦵</span>
+        <h3>Reflexología</h3>
+        <p>Masaje en puntos reflejos de pies y manos que corresponden a órganos y sistemas del cuerpo para restablecer el equilibrio.</p>
+        <span class="terapia-duration">45 – 60 min</span>
+      </div>
+      <div class="terapia-card">
+        <span class="terapia-icon">✨</span>
+        <h3>Tratamiento Facial</h3>
+        <p>Ritual de limpieza profunda, exfoliación y nutrición para la piel del rostro. Incluye masaje facial descontracturante.</p>
+        <span class="terapia-duration">60 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERAPIAS ENERGÉTICAS -->
+<section id="energeticas" class="energy-section">
+  <div class="container">
+    <div class="energy-header">
+      <p class="section-label">Medicina alternativa</p>
+      <h2 class="section-title">Terapias Energéticas</h2>
+      <div class="divider"></div>
+      <p class="section-sub">El trabajo holístico va más allá del cuerpo físico. Nuestras terapias energéticas abordan el bienestar desde múltiples dimensiones del ser.</p>
+    </div>
+    <div class="energy-grid">
+      <div class="energy-item">
+        <span class="energy-emoji">⚡</span>
+        <h4>Reiki</h4>
+        <p>Canalización de energía universal para restablecer el flujo vital y promover la sanación natural del cuerpo.</p>
+      </div>
+      <div class="energy-item">
+        <span class="energy-emoji">🧲</span>
+        <h4>Biomagnetismo</h4>
+        <p>Terapia con imanes de alta intensidad para restablecer el pH celular y equilibrar el campo biomagnético del organismo.</p>
+      </div>
+      <div class="energy-item">
+        <span class="energy-emoji">🔮</span>
+        <h4>Alineación de Chakras</h4>
+        <p>Identificación y equilibrio de los centros energéticos del cuerpo para mejorar el bienestar físico y emocional.</p>
+      </div>
+      <div class="energy-item">
+        <span class="energy-emoji">🌙</span>
+        <h4>Sanación Espiritual</h4>
+        <p>Sesiones integrales de limpieza energética, liberación emocional y conexión con tu yo superior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="container">
+    <div class="exp-grid">
+      <div class="exp-visual">🪷</div>
+      <div>
+        <p class="section-label">Nuestra filosofía</p>
+        <h2 class="section-title">Un enfoque holístico del bienestar</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Creemos que la salud verdadera abarca cuerpo, mente y espíritu. Por eso cada visita a Relax Soul es una experiencia transformadora.</p>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-num">1</div>
+            <div>
+              <h4>Diagnóstico personalizado</h4>
+              <p>Antes de cada sesión conversamos sobre tus necesidades y objetivos para diseñar la terapia ideal para ti.</p>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-num">2</div>
+            <div>
+              <h4>Ambiente sagrado</h4>
+              <p>Música, aromaterapia e iluminación cuidadosamente seleccionadas para crear el entorno perfecto para tu sanación.</p>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-num">3</div>
+            <div>
+              <h4>Seguimiento post-sesión</h4>
+              <p>Recomendaciones personalizadas para mantener y potenciar los beneficios de cada terapia en tu vida diaria.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background:var(--morado);">Agenda tu sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <p class="section-label">Experiencias reales</p>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Cada sesión es un viaje único. Aquí las voces de quienes ya lo vivieron.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"El masaje terapéutico fue increíble. Llevaba meses con una contractura en el hombro y después de una sesión el alivio fue inmediato. ¡Muy recomendado!"</p>
+        <div class="review-author"><strong>Roberto S.</strong><span>Google · hace 1 mes</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"La sesión de reiki fue una experiencia transformadora. El ambiente del lugar es mágico y la terapeuta tiene un don especial. Salí sintiéndome completamente renovada."</p>
+        <div class="review-author"><strong>Lucía M.</strong><span>Google · hace 3 semanas</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"El biomagnetismo me ayudó con dolores crónicos que tenía desde hace años. Es fascinante cómo funciona. El personal es muy profesional y el lugar, muy tranquilo."</p>
+        <div class="review-author"><strong>Carmen V.</strong><span>Google · hace 2 meses</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <p class="section-label">Visítanos</p>
+        <h2 class="section-title">Tu oasis de paz en Monterrey</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Un espacio diseñado para desconectarte del mundo y reconectar contigo mismo.</p>
+        <div class="loc-list">
+          <div class="loc-row">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <strong>Dirección</strong>
+              <span>Calle Hidalgo #567, Col. del Valle<br>Monterrey, N.L. 64300</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📲</div>
+            <div class="loc-text">
+              <strong>WhatsApp / Citas</strong>
+              <span><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">+52 811 234 5678</a></span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">🕐</div>
+            <div class="loc-text">
+              <strong>Horario de atención</strong>
+              <span>Lunes – Viernes: 9:00 AM – 8:00 PM<br>Sábado: 9:00 AM – 6:00 PM</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📱</div>
+            <div class="loc-text">
+              <strong>Redes sociales</strong>
+              <span>
+                <a href="https://instagram.com/relaxsoul.mty" target="_blank" rel="noopener noreferrer">@relaxsoul.mty</a> en Instagram
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background:var(--morado);">Reservar ahora</a>
+        </div>
+      </div>
+      <div class="map-box">🗺️</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo" style="color:#e8e0f5;">Relax Soul</a>
+      <p>Spa holístico en Monterrey. Masajes terapéuticos, reiki, biomagnetismo y terapias energéticas para el bienestar de cuerpo y alma.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Terapias</h5>
+      <ul>
+        <li><a href="#terapias">Masajes corporales</a></li>
+        <li><a href="#energeticas">Reiki</a></li>
+        <li><a href="#energeticas">Biomagnetismo</a></li>
+        <li><a href="#energeticas">Alineación de Chakras</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="https://instagram.com/relaxsoul.mty" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#ubicacion">Cómo llegar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Spa Relax Soul · Monterrey, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>

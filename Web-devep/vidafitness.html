@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidafitness – Centro Integral de Fitness Monterrey</title>
+<meta name="description" content="Vidafitness – Centro integral de fitness en Mall Plaza Lincoln, Monterrey. Kickboxing, Spinning, Pilates, Yoga, sala de pesas y entrenamiento personal.">
+<meta property="og:title" content="Vidafitness – Centro Integral de Fitness Monterrey">
+<meta property="og:description" content="Sé más fuerte que tus límites. Kickboxing, Spinning, Pilates, Yoga y más en Monterrey.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#C5E000">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --lima: #C5E000;
+    --lima-oscuro: #adc700;
+    --negro: #090909;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2A2A2A;
+    --gris: #7A7A7A;
+    --gris-claro: #F2F2F2;
+    --blanco: #FFFFFF;
+    --rojo: #FF3B3B;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--blanco); background: var(--negro); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(9,9,9,0.96); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(197,224,0,0.2);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--lima); letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--lima); }
+  .btn-unirse { background: var(--lima); color: var(--negro) !important; padding: 0.6rem 1.6rem; font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s !important; }
+  .btn-unirse:hover { background: var(--lima-oscuro) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--negro);
+    display: flex; align-items: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-accent { position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: linear-gradient(135deg, transparent 40%, rgba(197,224,0,0.04) 100%); pointer-events: none; }
+  .hero-line { position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--lima); }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-over { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.4em; text-transform: uppercase; color: var(--lima); margin-bottom: 1.5rem; display: block; }
+  .hero h1 { font-family: 'Oswald', sans-serif; font-size: clamp(3.5rem,9vw,8rem); font-weight: 700; color: var(--blanco); line-height: 0.95; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.01em; }
+  .hero h1 .accent { color: var(--lima); display: block; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 520px; line-height: 1.8; font-weight: 300; margin-bottom: 3rem; }
+  .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 4rem; }
+  .btn-lima { background: var(--lima); color: var(--negro); text-decoration: none; padding: 1rem 3rem; font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-lima:hover { background: var(--lima-oscuro); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.25); color: var(--blanco); text-decoration: none; padding: 1rem 3rem; font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: border-color 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--lima); color: var(--lima); }
+  .hero-stats { display: flex; gap: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+  .stat-item { }
+  .stat-num { font-family: 'Oswald', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--lima); display: block; line-height: 1; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.3rem; display: block; }
+
+  /* SECCIÓN GENÉRICA */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-over { font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lima); margin-bottom: 0.8rem; display: block; }
+  .section-title { font-family: 'Oswald', sans-serif; font-size: clamp(2.2rem,5vw,4rem); font-weight: 700; text-transform: uppercase; line-height: 1.0; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .section-sub { color: rgba(255,255,255,0.5); line-height: 1.8; max-width: 580px; font-size: 0.95rem; font-weight: 300; }
+
+  /* CLASES */
+  .clases-section { background: var(--gris-oscuro); }
+  .clases-header { margin-bottom: 3.5rem; }
+  .clases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+  .clase-card { background: var(--gris-oscuro); padding: 2.5rem 2rem; transition: background 0.2s; position: relative; overflow: hidden; }
+  .clase-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--lima); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .clase-card:hover::before { transform: scaleX(1); }
+  .clase-card:hover { background: var(--gris-medio); }
+  .clase-icon { font-size: 2.5rem; display: block; margin-bottom: 1.2rem; }
+  .clase-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.03em; }
+  .clase-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 1.2rem; }
+  .clase-intensity { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lima); }
+  .intensity-bar { display: flex; gap: 3px; }
+  .bar { width: 8px; height: 8px; border-radius: 2px; background: rgba(197,224,0,0.2); }
+  .bar.active { background: var(--lima); }
+
+  /* INSTALACIONES */
+  .instalaciones-section { background: var(--negro); }
+  .instalaciones-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .instalacion-item { background: var(--gris-oscuro); padding: 2rem 1.5rem; border-left: 3px solid var(--lima); }
+  .instalacion-icon { font-size: 2rem; display: block; margin-bottom: 1rem; }
+  .instalacion-item h4 { font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.03em; }
+  .instalacion-item p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ENTRENADORES */
+  .trainers-section { background: var(--gris-oscuro); }
+  .trainers-header { margin-bottom: 3.5rem; }
+  .trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .trainer-card { background: var(--negro); overflow: hidden; }
+  .trainer-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 6rem; position: relative; }
+  .trainer-img.t1 { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+  .trainer-img.t2 { background: linear-gradient(135deg, #1a2a00, #2a4000); }
+  .trainer-img.t3 { background: linear-gradient(135deg, #0a0a1a, #1a1a2a); }
+  .trainer-badge { position: absolute; bottom: 1rem; left: 1rem; background: var(--lima); color: var(--negro); font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.8rem; }
+  .trainer-info { padding: 1.8rem; }
+  .trainer-info h4 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.3rem; letter-spacing: 0.02em; }
+  .trainer-info .role { font-size: 0.78rem; color: var(--lima); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+  .trainer-info p { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* MEMBRESÍAS */
+  .memb-section { background: var(--negro); }
+  .memb-header { text-align: center; margin-bottom: 3.5rem; }
+  .memb-header .section-sub { margin: 0.8rem auto 0; }
+  .memb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.04); }
+  .memb-card { background: var(--negro); padding: 3rem 2.5rem; text-align: center; position: relative; transition: background 0.2s; }
+  .memb-card.featured { background: var(--lima); }
+  .memb-card.featured .memb-price,
+  .memb-card.featured .memb-name { color: var(--negro); }
+  .memb-card.featured .memb-sub { color: rgba(0,0,0,0.6); }
+  .memb-card.featured .memb-feature { color: var(--negro); border-color: rgba(0,0,0,0.12); }
+  .memb-label { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--negro); color: var(--lima); font-family: 'Oswald', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.25rem 1rem; }
+  .memb-name { font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; display: block; }
+  .memb-price { font-family: 'Oswald', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--blanco); line-height: 1; }
+  .memb-price small { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+  .memb-sub { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; display: block; margin-top: 0.4rem; }
+  .memb-features { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+  .memb-feature { font-size: 0.85rem; color: rgba(255,255,255,0.65); padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
+  .memb-feature.check::before { content: '✓'; color: var(--lima); font-weight: 700; }
+  .btn-memb { display: block; padding: 0.9rem; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; text-align: center; transition: background 0.2s; }
+  .btn-memb-outline { border: 1px solid rgba(255,255,255,0.2); color: var(--blanco); }
+  .btn-memb-outline:hover { background: rgba(255,255,255,0.08); }
+  .btn-memb-dark { background: var(--negro); color: var(--lima); }
+  .btn-memb-dark:hover { background: #111; }
+
+  /* CTA */
+  .cta-section { background: var(--lima); text-align: center; padding: 6rem 2rem; }
+  .cta-section h2 { font-family: 'Oswald', sans-serif; font-size: clamp(3rem,8vw,7rem); font-weight: 700; text-transform: uppercase; color: var(--negro); line-height: 0.95; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+  .cta-section p { font-size: 1.1rem; color: rgba(0,0,0,0.6); max-width: 450px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .btn-negro { background: var(--negro); color: var(--lima); text-decoration: none; padding: 1.2rem 3.5rem; font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s; display: inline-block; }
+  .btn-negro:hover { background: #222; }
+
+  /* RESEÑAS */
+  .reviews-section { background: var(--gris-oscuro); }
+  .reviews-header { margin-bottom: 3.5rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.04); }
+  .review-card { background: var(--gris-oscuro); padding: 2rem; }
+  .stars { color: var(--lima); font-size: 1rem; margin-bottom: 1rem; }
+  .review-text { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 1.2rem; }
+  .review-author strong { font-family: 'Oswald', sans-serif; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+  .review-author span { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+  /* UBICACIÓN */
+  .location-section { background: var(--negro); }
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .map-box { aspect-ratio: 4/3; background: var(--gris-oscuro); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+  .loc-list { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 2rem; }
+  .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon { width: 44px; height: 44px; background: var(--lima); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .loc-text strong { display: block; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; display: block; }
+  .loc-text a { color: var(--lima); text-decoration: none; font-weight: 600; }
+  .loc-text a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #000; color: rgba(255,255,255,0.5); padding: 4rem 2rem 2rem; border-top: 3px solid var(--lima); }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.4); margin-top: 0.8rem; }
+  .footer-col h5 { font-family: 'Oswald', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lima); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--lima); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem; color: rgba(255,255,255,0.25); max-width: 1100px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .clases-grid, .instalaciones-grid, .trainers-grid, .memb-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Vidafitness</a>
+  <ul class="nav-links">
+    <li><a href="#clases">Clases</a></li>
+    <li><a href="#instalaciones">Instalaciones</a></li>
+    <li><a href="#membresías">Membresías</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-unirse">Únete</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-line"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-inner">
+    <span class="hero-over">Mall Plaza Lincoln · Monterrey, N.L.</span>
+    <h1>Sé más<br>fuerte que<br><span class="accent">tus límites</span></h1>
+    <p class="hero-sub">Centro integral de fitness con más de 15 disciplinas. Kickboxing, Spinning, Pilates, Yoga, sala de pesas y entrenamiento personal. Todo en un solo lugar.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-lima">Únete hoy</a>
+      <a href="#clases" class="btn-ghost">Ver clases</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Disciplinas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Clases semanales</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">Miembros activos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Google Reviews</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASES -->
+<section id="clases" class="clases-section">
+  <div class="container">
+    <div class="clases-header">
+      <span class="section-over">Disciplinas</span>
+      <h2 class="section-title">Elige tu clase</h2>
+      <p class="section-sub">Más de 15 disciplinas con instructores certificados. Desde clases de alta intensidad hasta prácticas de bienestar mental y flexibility.</p>
+    </div>
+    <div class="clases-grid">
+      <div class="clase-card">
+        <span class="clase-icon">🥊</span>
+        <h3>Kickboxing</h3>
+        <p>Entrenamiento de artes marciales combinado con cardio intenso. Quema grasa, tonifica y aprende técnicas de defensa personal.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clase-card">
+        <span class="clase-icon">🚴</span>
+        <h3>Spinning</h3>
+        <p>Ciclismo indoor de alta energía con música motivadora. La clase favorita para quemar calorías y mejorar la resistencia cardiovascular.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clase-card">
+        <span class="clase-icon">🧘</span>
+        <h3>Pilates</h3>
+        <p>Sistema de ejercicios que fortalece el core, mejora la postura y la flexibilidad. Ideal para todos los niveles de condición física.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clase-card">
+        <span class="clase-icon">🌟</span>
+        <h3>Yoga</h3>
+        <p>Unión de cuerpo, mente y espíritu. Mejora la flexibilidad, reduce el estrés y cultiva la consciencia plena en cada práctica.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clase-card">
+        <span class="clase-icon">💥</span>
+        <h3>HIIT</h3>
+        <p>Entrenamiento de intervalos de alta intensidad. Maximiza la quema de grasa en menos tiempo con ejercicios funcionales explosivos.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clase-card">
+        <span class="clase-icon">💃</span>
+        <h3>Zumba</h3>
+        <p>Fitness con ritmos latinos y mundiales. La forma más divertida de ejercitarse — bailas, sudas y te olvidas de que estás haciendo ejercicio.</p>
+        <div class="clase-intensity">
+          Intensidad
+          <div class="intensity-bar">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALACIONES -->
+<section id="instalaciones" class="instalaciones-section">
+  <div class="container">
+    <span class="section-over">El espacio</span>
+    <h2 class="section-title">Instalaciones de primer nivel</h2>
+    <p class="section-sub">Todo lo que necesitas para alcanzar tus metas en un solo lugar, con equipamiento de última generación.</p>
+    <div class="instalaciones-grid">
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🏋️</span>
+        <h4>Sala de pesas</h4>
+        <p>Equipamiento de pesos libres, máquinas de cable, poleas y todo para tu entrenamiento de fuerza.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🚴</span>
+        <h4>Sala de spinning</h4>
+        <p>40 bicicletas profesionales con sistema de sonido inmersivo y proyección de video para la experiencia completa.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🥊</span>
+        <h4>Área de artes marciales</h4>
+        <p>Ring de boxeo, sacos, guantes y colchonetas de alta densidad para tus clases de kickboxing y combate.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🧘</span>
+        <h4>Sala de yoga y pilates</h4>
+        <p>Espacio tranquilo y equipado con tapetes, bloques, correas y reformers para tus prácticas de bienestar.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🚿</span>
+        <h4>Vestidores y regaderas</h4>
+        <p>Vestidores amplios con casilleros, regaderas con agua caliente y amenidades incluidas.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🥤</span>
+        <h4>Barra de nutrición</h4>
+        <p>Proteínas, batidos, snacks saludables y bebidas isotónicas para antes, durante y después de tu entrenamiento.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">📶</span>
+        <h4>Wi-Fi de alta velocidad</h4>
+        <p>Conexión gratuita en todas las áreas del gimnasio para tus aplicaciones de fitness y entretenimiento.</p>
+      </div>
+      <div class="instalacion-item">
+        <span class="instalacion-icon">🅿️</span>
+        <h4>Estacionamiento</h4>
+        <p>Estacionamiento del Mall Plaza Lincoln disponible con descuento para miembros activos de Vidafitness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRENADORES -->
+<section class="trainers-section">
+  <div class="container">
+    <div class="trainers-header">
+      <span class="section-over">Nuestro equipo</span>
+      <h2 class="section-title">Entrenadores certificados</h2>
+      <p class="section-sub">Instructores con certificaciones internacionales y una pasión genuina por transformar vidas a través del fitness.</p>
+    </div>
+    <div class="trainers-grid">
+      <div class="trainer-card">
+        <div class="trainer-img t1">
+          💪
+          <div class="trainer-badge">Kickboxing</div>
+        </div>
+        <div class="trainer-info">
+          <h4>Miguel Torres</h4>
+          <span class="role">Head Coach · Kickboxing &amp; HIIT</span>
+          <p>Campeón regional de kickboxing con 12 años de experiencia formando atletas y entusiastas del fitness.</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-img t2">
+          🧘
+          <div class="trainer-badge">Yoga &amp; Pilates</div>
+        </div>
+        <div class="trainer-info">
+          <h4>Gabriela Luna</h4>
+          <span class="role">Instructora Senior · Yoga &amp; Pilates</span>
+          <p>Certificada en Hatha Yoga (India) y Pilates Reformer (USA). 8 años transformando cuerpos y mentes.</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-img t3">
+          🚴
+          <div class="trainer-badge">Spinning</div>
+        </div>
+        <div class="trainer-info">
+          <h4>Ricardo Vega</h4>
+          <span class="role">Spinning Master · Nutrición deportiva</span>
+          <p>Especialista en ciclismo indoor y nutrición deportiva. Sus clases son una experiencia de alta energía inigualable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBRESÍAS -->
+<section id="membresías" class="memb-section">
+  <div class="container">
+    <div class="memb-header">
+      <span class="section-over">Planes</span>
+      <h2 class="section-title">Elige tu membresía</h2>
+      <p class="section-sub">Sin contratos forzosos. Cancela cuando quieras. Empieza hoy.</p>
+    </div>
+    <div class="memb-grid">
+      <div class="memb-card">
+        <span class="memb-name">Básica</span>
+        <div class="memb-price">$599 <small>/ mes</small></div>
+        <span class="memb-sub">Acceso a sala de pesas</span>
+        <div class="memb-features">
+          <div class="memb-feature check">Sala de pesas ilimitada</div>
+          <div class="memb-feature check">Vestidores y regaderas</div>
+          <div class="memb-feature check">Wi-Fi incluido</div>
+          <div class="memb-feature" style="opacity:0.3;">Clases grupales</div>
+          <div class="memb-feature" style="opacity:0.3;">Entrenamiento personal</div>
+        </div>
+        <a href="https://wa.me/528112345678?text=Quiero%20la%20members%C3%ADa%20b%C3%A1sica" target="_blank" rel="noopener noreferrer" class="btn-memb btn-memb-outline">Empezar</a>
+      </div>
+      <div class="memb-card featured">
+        <div class="memb-label">Más popular</div>
+        <span class="memb-name">Completa</span>
+        <div class="memb-price">$899 <small>/ mes</small></div>
+        <span class="memb-sub" style="color:rgba(0,0,0,0.55);">Acceso total al gimnasio</span>
+        <div class="memb-features">
+          <div class="memb-feature check">Sala de pesas ilimitada</div>
+          <div class="memb-feature check">Todas las clases grupales</div>
+          <div class="memb-feature check">Vestidores y regaderas</div>
+          <div class="memb-feature check">Wi-Fi incluido</div>
+          <div class="memb-feature" style="opacity:0.4;">Entrenamiento personal</div>
+        </div>
+        <a href="https://wa.me/528112345678?text=Quiero%20la%20members%C3%ADa%20completa" target="_blank" rel="noopener noreferrer" class="btn-memb btn-memb-dark">Elegir plan</a>
+      </div>
+      <div class="memb-card">
+        <span class="memb-name">Premium</span>
+        <div class="memb-price">$1,399 <small>/ mes</small></div>
+        <span class="memb-sub">Todo incluido + personal trainer</span>
+        <div class="memb-features">
+          <div class="memb-feature check">Sala de pesas ilimitada</div>
+          <div class="memb-feature check">Todas las clases grupales</div>
+          <div class="memb-feature check">4 sesiones de PT al mes</div>
+          <div class="memb-feature check">Plan de nutrición</div>
+          <div class="memb-feature check">Acceso prioritario clases</div>
+        </div>
+        <a href="https://wa.me/528112345678?text=Quiero%20la%20members%C3%ADa%20premium" target="_blank" rel="noopener noreferrer" class="btn-memb btn-memb-outline">Empezar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PRINCIPAL -->
+<section class="cta-section">
+  <h2>Tu<br>transformación<br>empieza hoy</h2>
+  <p>El único mal entrenamiento es el que no hiciste. Da el primer paso y Únete a la familia Vidafitness.</p>
+  <a href="https://wa.me/528112345678?text=Quiero%20unirme%20a%20Vidafitness" target="_blank" rel="noopener noreferrer" class="btn-negro">Únete ahora gratis</a>
+</section>
+
+<!-- RESEÑAS -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="section-over">Testimonios</span>
+      <h2 class="section-title">Lo que dicen nuestros miembros</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Llevo 6 meses en Vidafitness y la transformación ha sido increíble. Las clases de kickboxing son adictivas. Los instructores te impulsan a dar el 100% siempre."</p>
+        <div class="review-author"><strong>Andrés M.</strong><span>Google · hace 1 mes</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"El mejor gimnasio que he conocido en Monterrey. La variedad de clases es impresionante y el ambiente es muy motivador. El spinning con Ricardo es un nivel aparte."</p>
+        <div class="review-author"><strong>Valeria R.</strong><span>Google · hace 3 semanas</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Empecé con yoga y ahora hago kickboxing. Las instalaciones siempre limpias, el personal muy amable. La mejor inversión que he hecho en mi salud. Sin duda, 5 estrellas."</p>
+        <div class="review-author"><strong>Camila T.</strong><span>Google · hace 2 meses</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion" class="location-section">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <span class="section-over">Visítanos</span>
+        <h2 class="section-title">Mall Plaza Lincoln,<br>Monterrey</h2>
+        <p class="section-sub">En el corazón de la zona Lincoln, con fácil acceso desde toda la ciudad y amplio estacionamiento.</p>
+        <div class="loc-list">
+          <div class="loc-row">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <strong>Dirección</strong>
+              <span>Mall Plaza Lincoln, Piso 3<br>Av. Lincoln 360, Col. Del Prado<br>Monterrey, N.L. 64410</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📲</div>
+            <div class="loc-text">
+              <strong>WhatsApp</strong>
+              <span><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">+52 811 234 5678</a></span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">🕐</div>
+            <div class="loc-text">
+              <strong>Horario</strong>
+              <span>Lunes – Viernes: 6:00 AM – 10:00 PM<br>Sábado – Domingo: 7:00 AM – 8:00 PM</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📱</div>
+            <div class="loc-text">
+              <strong>Redes sociales</strong>
+              <span><a href="https://instagram.com/vidafitness.mty" target="_blank" rel="noopener noreferrer">@vidafitness.mty</a> en Instagram</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-lima">Agendar visita gratis</a>
+        </div>
+      </div>
+      <div class="map-box">🗺️</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo">Vidafitness</a>
+      <p>Centro integral de fitness en Mall Plaza Lincoln, Monterrey. Kickboxing, Spinning, Pilates, Yoga, sala de pesas y entrenamiento personal.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Disciplinas</h5>
+      <ul>
+        <li><a href="#clases">Kickboxing</a></li>
+        <li><a href="#clases">Spinning</a></li>
+        <li><a href="#clases">Pilates</a></li>
+        <li><a href="#clases">Yoga</a></li>
+        <li><a href="#clases">HIIT &amp; Zumba</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="https://instagram.com/vidafitness.mty" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#membresías">Membresías</a></li>
+        <li><a href="#ubicacion">Cómo llegar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Vidafitness · Mall Plaza Lincoln, Monterrey, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>

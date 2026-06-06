@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecny Fitness Center – Monterrey</title>
+<meta name="description" content="Tecny Fitness Center Monterrey – Venta, reparación y mantenimiento de equipos fitness para gimnasios, empresas y hogares en todo México.">
+<meta property="og:title" content="Tecny Fitness Center – Monterrey">
+<meta property="og:description" content="Equipos fitness: venta, reparación y mantenimiento. Monterrey, N.L.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFD700">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --amarillo: #FFD700;
+    --amarillo-oscuro: #E6C200;
+    --negro: #0A0A0A;
+    --gris-oscuro: #1A1A1A;
+    --gris: #6B6B6B;
+    --gris-claro: #F4F4F4;
+    --blanco: #FFFFFF;
+    --rojo: #E84040;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; color: var(--negro); background: var(--blanco); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--negro); border-bottom: 3px solid var(--amarillo);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--blanco); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-logo span { color: var(--amarillo); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.84rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--amarillo); }
+  .btn-cotizar { background: var(--amarillo); color: var(--negro) !important; padding: 0.55rem 1.4rem; font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: 0.08em; text-decoration: none; transition: background 0.2s !important; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+  .btn-cotizar:hover { background: var(--amarillo-oscuro) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--negro);
+    display: flex; align-items: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 22vw; font-weight: 800; color: rgba(255,215,0,0.03);
+    white-space: nowrap; pointer-events: none; user-select: none; letter-spacing: -0.05em;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+  .hero-tag { display: inline-block; background: var(--amarillo); color: var(--negro); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 1rem; margin-bottom: 1.5rem; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(3rem,6vw,5rem); font-weight: 800; color: var(--blanco); line-height: 1.0; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.01em; }
+  .hero h1 span { color: var(--amarillo); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--amarillo); color: var(--negro); text-decoration: none; padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; display: inline-block; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); }
+  .btn-primary:hover { background: var(--amarillo-oscuro); transform: translateY(-2px); }
+  .btn-outline { border: 2px solid rgba(255,255,255,0.3); color: var(--blanco); text-decoration: none; padding: 1rem 2.5rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--amarillo); color: var(--amarillo); }
+  .hero-visual { display: flex; align-items: center; justify-content: center; }
+  .hero-box { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border: 3px solid var(--amarillo); display: flex; align-items: center; justify-content: center; font-size: 8rem; position: relative; }
+  .hero-box::after { content: ''; position: absolute; inset: 8px; border: 1px solid rgba(255,215,0,0.2); pointer-events: none; }
+  .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+  .stat-item { }
+  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--amarillo); display: block; line-height: 1; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+  /* SECCIÓN GENÉRICA */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-tag { display: inline-block; background: var(--amarillo); color: var(--negro); font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.25rem 0.9rem; margin-bottom: 0.8rem; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 800; color: var(--negro); text-transform: uppercase; line-height: 1.0; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .section-sub { color: var(--gris); line-height: 1.8; max-width: 580px; font-size: 0.95rem; }
+
+  /* SERVICIOS */
+  .services-section { background: var(--gris-claro); }
+  .services-header { margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .service-card { background: var(--blanco); padding: 2.5rem 2rem; border-bottom: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .service-card:hover { border-color: var(--amarillo); background: #fffbe6; }
+  .service-icon { font-size: 2.8rem; display: block; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.6rem; color: var(--negro); letter-spacing: 0.02em; }
+  .service-card p { font-size: 0.87rem; color: var(--gris); line-height: 1.7; }
+
+  /* MARCAS */
+  .brands-section { background: var(--negro); }
+  .brands-header { text-align: center; margin-bottom: 3rem; }
+  .brands-section .section-title { color: var(--blanco); }
+  .brands-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; align-items: center; justify-items: center; }
+  .brand-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem 1rem; text-align: center; width: 100%; transition: background 0.2s, border-color 0.2s; }
+  .brand-item:hover { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.3); }
+  .brand-emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+  .brand-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+  /* PROCESO */
+  .process-section { background: var(--negro); border-top: 1px solid rgba(255,255,255,0.06); }
+  .process-section .section-title { color: var(--blanco); }
+  .process-section .section-tag { }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+  .step { padding: 2.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.08); position: relative; }
+  .step:last-child { border-right: none; }
+  .step-num { font-family: 'Barlow Condensed', sans-serif; font-size: 4rem; font-weight: 800; color: rgba(255,215,0,0.15); display: block; line-height: 1; margin-bottom: 0.8rem; }
+  .step h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; color: var(--blanco); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.84rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* CLIENTES */
+  .clients-section { background: var(--amarillo); }
+  .clients-section .section-tag { background: var(--negro); color: var(--amarillo); }
+  .clients-section .section-title { color: var(--negro); }
+  .clients-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .clients-img { aspect-ratio: 4/3; background: rgba(0,0,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 7rem; }
+  .client-types { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .client-type { display: flex; gap: 1rem; align-items: center; background: rgba(0,0,0,0.06); padding: 1rem 1.2rem; border-radius: 6px; }
+  .client-type-icon { font-size: 1.5rem; }
+  .client-type strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .client-type span { font-size: 0.8rem; color: rgba(0,0,0,0.6); }
+
+  /* RESEÑAS */
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .review-card { background: var(--gris-claro); padding: 2rem; border-left: 4px solid var(--amarillo); }
+  .stars { color: var(--amarillo); font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.88rem; color: var(--gris); line-height: 1.8; margin-bottom: 1.2rem; }
+  .review-author strong { font-size: 0.85rem; display: block; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+  .review-author span { font-size: 0.75rem; color: var(--gris); }
+
+  /* CTA FINAL */
+  .cta-section { background: var(--amarillo); text-align: center; padding: 5rem 2rem; }
+  .cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem,6vw,5rem); font-weight: 800; text-transform: uppercase; color: var(--negro); line-height: 1.0; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .cta-section p { font-size: 1.1rem; color: rgba(0,0,0,0.65); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .btn-dark { background: var(--negro); color: var(--blanco); text-decoration: none; padding: 1.1rem 3rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: inline-block; clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%); transition: background 0.2s; }
+  .btn-dark:hover { background: #333; }
+
+  /* FOOTER */
+  footer { background: #050505; color: rgba(255,255,255,0.65); padding: 4rem 2rem 2rem; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.5); margin-top: 0.8rem; }
+  .footer-col h5 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--amarillo); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1100px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .hero-inner, .clients-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .process-steps, .reviews-grid { grid-template-columns: 1fr; }
+    .brands-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-visual { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Tecny<span>Fitness</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#marcas">Marcas</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-cotizar">Cotizar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-text">FITNESS</div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Monterrey, N.L. · Todo México</div>
+      <h1>Equipa tu<br><span>gimnasio</span><br>con los mejores</h1>
+      <p class="hero-sub">Venta, reparación y mantenimiento preventivo y correctivo de equipos fitness de las mejores marcas. Servicio para gimnasios, empresas y hogares en todo México.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary">Cotizar ahora</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Equipos reparados</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Garantía de servicio</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-box">🏋️</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-tag">Lo que hacemos</div>
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-sub">Soluciones integrales para el equipamiento fitness de tu negocio o tu hogar. De la venta al mantenimiento, te acompañamos en todo el proceso.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🛒</span>
+        <h3>Venta de Equipos</h3>
+        <p>Catálogo completo de equipos fitness nuevos y reacondicionados: caminadoras, elípticas, bicicletas, poleas, pesas, racks y mucho más.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>Reparación Correctiva</h3>
+        <p>Diagnóstico y reparación de cualquier equipo fitness con fallas mecánicas, electrónicas o de software. Servicio rápido y garantizado.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛡️</span>
+        <h3>Mantenimiento Preventivo</h3>
+        <p>Programas de mantenimiento periódico para prolongar la vida útil de tus equipos y prevenir fallas costosas. Contratos anuales disponibles.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚚</span>
+        <h3>Instalación y Montaje</h3>
+        <p>Transporte, instalación profesional y configuración de equipos fitness en tu ubicación. Servicio en Monterrey y área metropolitana.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📦</span>
+        <h3>Refacciones Originales</h3>
+        <p>Distribuidor autorizado de refacciones y piezas originales para las principales marcas de equipos fitness del mercado.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💡</span>
+        <h3>Asesoría en Diseño</h3>
+        <p>Te ayudamos a diseñar y equipar tu gimnasio desde cero: distribución del espacio, selección de equipos, presupuesto y financiamiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas" class="brands-section">
+  <div class="container">
+    <div class="brands-header">
+      <div class="section-tag">Con las que trabajamos</div>
+      <h2 class="section-title" style="color:#fff;">Marcas Líderes</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.55);margin:1rem auto 0;">Somos distribuidores y técnicos certificados de las mejores marcas de equipos fitness a nivel mundial.</p>
+    </div>
+    <div class="brands-grid">
+      <div class="brand-item">
+        <span class="brand-emoji">🏃</span>
+        <span class="brand-name">Life Fitness</span>
+      </div>
+      <div class="brand-item">
+        <span class="brand-emoji">⚡</span>
+        <span class="brand-name">Technogym</span>
+      </div>
+      <div class="brand-item">
+        <span class="brand-emoji">💪</span>
+        <span class="brand-name">Matrix</span>
+      </div>
+      <div class="brand-item">
+        <span class="brand-emoji">🎯</span>
+        <span class="brand-name">Precor</span>
+      </div>
+      <div class="brand-item">
+        <span class="brand-emoji">🏋️</span>
+        <span class="brand-name">BH Fitness</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-tag">Cómo trabajamos</div>
+    <h2 class="section-title" style="color:#fff;">Proceso de Servicio</h2>
+    <div class="process-steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h4>Diagnóstico</h4>
+        <p>Evaluamos el estado de tu equipo o las necesidades de tu instalación de forma gratuita.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h4>Cotización</h4>
+        <p>Presentamos una propuesta detallada sin costos ocultos. Transparencia total en precios y tiempos.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h4>Ejecución</h4>
+        <p>Técnicos certificados realizan el trabajo con piezas originales y herramientas especializadas.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <h4>Garantía</h4>
+        <p>Todo nuestro trabajo incluye garantía por escrito. Tu inversión está protegida con nosotros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes" class="clients-section">
+  <div class="container">
+    <div class="clients-inner">
+      <div>
+        <div class="section-tag">¿A quién servimos?</div>
+        <h2 class="section-title">Clientes que<br>confían en nosotros</h2>
+        <p class="section-sub" style="color:rgba(0,0,0,0.6);">Atendemos a todo tipo de clientes que necesitan equipos fitness de calidad y servicio técnico confiable.</p>
+        <div class="client-types">
+          <div class="client-type">
+            <span class="client-type-icon">🏟️</span>
+            <div>
+              <strong>Gimnasios comerciales</strong>
+              <span>Cadenas y gimnasios independientes que necesitan mantenimiento frecuente</span>
+            </div>
+          </div>
+          <div class="client-type">
+            <span class="client-type-icon">🏢</span>
+            <div>
+              <strong>Empresas y corporativos</strong>
+              <span>Gimnasios corporativos que buscan equipar sus instalaciones</span>
+            </div>
+          </div>
+          <div class="client-type">
+            <span class="client-type-icon">🏨</span>
+            <div>
+              <strong>Hoteles y resorts</strong>
+              <span>Gimnasios de hoteles con necesidades de mantenimiento constante</span>
+            </div>
+          </div>
+          <div class="client-type">
+            <span class="client-type-icon">🏠</span>
+            <div>
+              <strong>Hogares</strong>
+              <span>Personas que quieren tener su propio gimnasio en casa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clients-img">🏋️</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="contacto">
+  <div class="container">
+    <div class="section-tag">Lo que dicen</div>
+    <h2 class="section-title">Clientes Satisfechos</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Llevamos 3 años contratando el mantenimiento preventivo con Tecny y nunca hemos tenido una falla inesperada. Excelente servicio, puntuales y muy profesionales."</p>
+        <div class="review-author"><strong>GYM PRO Monterrey</strong><span>Google · hace 2 meses</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Mi caminadora estuvo años sin funcionar bien. Tecny la reparó en 2 días y quedó mejor que nueva. El precio fue muy justo y la garantía me dio total tranquilidad."</p>
+        <div class="review-author"><strong>Carlos M.</strong><span>Google · hace 1 mes</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Equiparon nuestro gimnasio corporativo completo. Excelente asesoría, variedad de equipos y el proceso de instalación fue rápido y limpio. Muy recomendados."</p>
+        <div class="review-author"><strong>FEMSA Corporativo</strong><span>Google · hace 4 meses</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>¿Listo para<br>equipar tu gimnasio?</h2>
+  <p>Cuéntanos lo que necesitas y te enviamos una cotización sin costo en menos de 24 horas.</p>
+  <a href="https://wa.me/528112345678?text=Hola!%20Quiero%20cotizar%20equipos%20fitness" target="_blank" rel="noopener noreferrer" class="btn-dark">Solicitar cotización gratis</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo" style="color:#fff;">Tecny<span style="color:var(--amarillo);">Fitness</span></a>
+      <p>Venta, reparación y mantenimiento de equipos fitness para gimnasios, empresas y hogares en Monterrey y todo México.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Venta de Equipos</a></li>
+        <li><a href="#servicios">Reparación</a></li>
+        <li><a href="#servicios">Mantenimiento</a></li>
+        <li><a href="#servicios">Instalación</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="mailto:contacto@tecnyfitness.mx">Correo electrónico</a></li>
+        <li><a href="#contacto">Reseñas</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Tecny Fitness Center · Monterrey, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>
