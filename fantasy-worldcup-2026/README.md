@@ -6,6 +6,22 @@ A full-stack fantasy football web app built for the FIFA World Cup 2026. Users m
 
 ---
 
+## Screenshots
+
+| Dashboard | Mercado |
+|---|---|
+| ![Dashboard](./screenshots/dashboard.png) | ![Mercado](./screenshots/mercado-lista.png) |
+
+| Cancha | Plantilla |
+|---|---|
+| ![Cancha](./screenshots/cancha.png) | ![Plantilla](./screenshots/plantilla.png) |
+
+| Mercado — filtros | Ranking |
+|---|---|
+| ![Filtros](./screenshots/mercado-filtro.png) | ![Ranking](./screenshots/ranking.png) |
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
