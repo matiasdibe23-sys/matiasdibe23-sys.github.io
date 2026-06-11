@@ -1,0 +1,258 @@
+{
+  "name": "Fantasy Mundial – Cerrar Jornada",
+  "nodes": [
+    {
+      "id": "schedule-trigger",
+      "name": "Cada hora (00:xx UTC)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [180, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "get-jornada",
+      "name": "¿Hay jornada para cerrar?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [400, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/obtener_jornada_a_cerrar",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ p_horas_espera: 2 }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "check-jornada",
+      "name": "¿Existe jornada?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [620, 300],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-length",
+              "leftValue": "={{ $json.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "call-cerrar-jornada",
+      "name": "Llamar cerrar_jornada()",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [840, 200],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/cerrar_jornada",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ p_jornada: $('¿Hay jornada para cerrar?').item.json[0].jornada }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "check-success",
+      "name": "¿Éxito o error?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1060, 200],
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true },
+          "conditions": [
+            {
+              "id": "cond-status",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 300,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "log-exito",
+      "name": "Log éxito",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1280, 100],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "fields": {
+          "values": [
+            {
+              "name": "mensaje",
+              "type": "string",
+              "value": "=✓ Jornada {{ $('¿Hay jornada para cerrar?').item.json[0].jornada }} cerrada. {{ $('Llamar cerrar_jornada()').item.json.body.length }} usuarios actualizados."
+            },
+            {
+              "name": "ranking",
+              "type": "array",
+              "value": "={{ $('Llamar cerrar_jornada()').item.json.body }}"
+            },
+            {
+              "name": "timestamp",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "log-error",
+      "name": "Log error",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1280, 300],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "fields": {
+          "values": [
+            {
+              "name": "mensaje",
+              "type": "string",
+              "value": "=✗ Error al cerrar jornada {{ $('¿Hay jornada para cerrar?').item.json[0].jornada }}: {{ $json.body.message ?? $json.body }}"
+            },
+            {
+              "name": "status",
+              "type": "number",
+              "value": "={{ $json.statusCode }}"
+            },
+            {
+              "name": "timestamp",
+              "type": "string",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "no-action",
+      "name": "Sin jornada que cerrar",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [840, 420],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Cada hora (00:xx UTC)": {
+      "main": [[{ "node": "¿Hay jornada para cerrar?", "type": "main", "index": 0 }]]
+    },
+    "¿Hay jornada para cerrar?": {
+      "main": [[{ "node": "¿Existe jornada?", "type": "main", "index": 0 }]]
+    },
+    "¿Existe jornada?": {
+      "main": [
+        [{ "node": "Llamar cerrar_jornada()", "type": "main", "index": 0 }],
+        [{ "node": "Sin jornada que cerrar",   "type": "main", "index": 0 }]
+      ]
+    },
+    "Llamar cerrar_jornada()": {
+      "main": [[{ "node": "¿Éxito o error?", "type": "main", "index": 0 }]]
+    },
+    "¿Éxito o error?": {
+      "main": [
+        [{ "node": "Log éxito", "type": "main", "index": 0 }],
+        [{ "node": "Log error", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": ""
+  }
+}
