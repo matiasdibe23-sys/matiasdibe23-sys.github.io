@@ -1,6 +1,6 @@
 # Landing Pages — Negocios Locales
 
-7 sitios web responsivos para negocios en Monterrey, México. Cada uno incluye secciones de servicios, precios, horarios y contacto por WhatsApp.
+7 sitios web responsivos para negocios locales, México. Cada uno incluye secciones de servicios, precios, horarios y contacto por WhatsApp.
 
 | Archivo | Negocio | Rubro |
 |---|---|---|
