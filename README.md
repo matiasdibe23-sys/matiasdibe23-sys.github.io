@@ -42,19 +42,19 @@ Sistemas de automatización construidos en n8n para gestión de negocios: reserv
 
 ---
 
-### Landing Pages para Negocios Locales
-7 sitios web responsivos para negocios: gimnasios, hoteles, salones de belleza, veterinarias y más.
+### Sitios Web para Negocios Locales
+7 sitios web para negocios en Monterrey, México. Cada uno con animaciones de entrada, diseño responsivo mobile-first, integración de WhatsApp y optimización SEO.
 
-**Tech:** HTML5 · CSS3 · JavaScript
+**Tech:** HTML5 · CSS3 · JavaScript · Google Fonts · Intersection Observer API
 
 **Proyectos:**
-- [Hero Boxing Club](./Web-dev/hero-boxing-club.html) — academia de boxeo
-- [Hotel Casa Lucía](./Web-dev/hotel-casa-lucia.html) — hotel boutique en el centro histórico
-- [Kleur Salón](./Web-dev/kleur-salon.html) — salón de belleza premium en San Pedro
-- [Spa Relax Soul](./Web-dev/spa-relax-soul.html) — centro de bienestar holístico
-- [Tecny Fitness Center](./Web-dev/tecny-fitness-center.html) — venta y reparación de equipos
-- [Veterinaria Happy Dog](./Web-dev/veterinaria-happy-dog.html) — clínica veterinaria
-- [Vida Fitness](./Web-dev/vidafitness.html) — gimnasio en Mall Plaza Lincoln
+- [Hero Boxing Club](https://matiasdibe23-sys.github.io/Web-dev/hero-boxing-club.html) — academia de boxeo
+- [Hotel Casa Lucía](https://matiasdibe23-sys.github.io/Web-dev/hotel-casa-lucia.html) — hotel boutique histórico
+- [Kleur Salón](https://matiasdibe23-sys.github.io/Web-dev/kleur-salon.html) — salón de belleza premium en San Pedro
+- [Spa Relax Soul](https://matiasdibe23-sys.github.io/Web-dev/spa-relax-soul.html) — centro de bienestar holístico
+- [Tecny Fitness Center](https://matiasdibe23-sys.github.io/Web-dev/tecny-fitness-center.html) — venta y reparación de equipos de gimnasio
+- [Veterinaria Happy Dog](https://matiasdibe23-sys.github.io/Web-dev/veterinaria-happy-dog.html) — clínica veterinaria
+- [Vida Fitness](https://matiasdibe23-sys.github.io/Web-dev/vidafitness.html) — gimnasio en Mall Plaza Lincoln
 
 📁 [`/Web-dev`](./Web-dev)
 
