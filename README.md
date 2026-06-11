@@ -2,7 +2,7 @@
 
 Desarrollador Full-Stack y especialista en automatización con IA. Construyo productos web completos y sistemas de automatización inteligentes para negocios reales.
 
-📍 Monterrey, México &nbsp;·&nbsp; 📧 matiasdibe23@gmail.com
+📍 México &nbsp;·&nbsp; 📧 matiasdibe23@gmail.com
 
 ---
 
@@ -43,7 +43,7 @@ Sistemas de automatización construidos en n8n para gestión de negocios: reserv
 ---
 
 ### Landing Pages para Negocios Locales
-7 sitios web responsivos para negocios en Monterrey: gimnasios, hoteles, salones de belleza, veterinarias y más.
+7 sitios web responsivos para negocios: gimnasios, hoteles, salones de belleza, veterinarias y más.
 
 **Tech:** HTML5 · CSS3 · JavaScript
 
