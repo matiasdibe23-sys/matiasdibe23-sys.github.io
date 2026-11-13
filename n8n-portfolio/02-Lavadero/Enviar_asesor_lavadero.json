@@ -1,0 +1,158 @@
+{
+  "updatedAt": "2025-07-26T17:57:01.000Z",
+  "createdAt": "2025-07-26T17:57:01.081Z",
+  "id": "kzQEOqlFo4VI7yvT",
+  "name": "Enviar asesor lavadero",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## CUANDO APAGAMOS EL BOT?\n- CUANDO EL USUARIO QUIERE HABLAR CON UN HUMANO O HAY ALGUN PROBLEMA CON ALGUNA HERRAMIENTA SE ACTIVA ESTE WORKFLOW, ASIGNAMOS LA ETIQUETA AL CONTACTO Y LUEGO LE ASIGNAMOS LA ETIQUETA BOT OFF PARA QUE EL AGENTE DEJE DE RESPONDERLE AL USUARIO.",
+        "height": 600,
+        "width": 540,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "46d66598-04e7-42be-86f1-cd8ebc02b215",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"conversation id\": \"5\",\n  \"contact id\": \"17\"\n}"
+      },
+      "id": "0aed8bf3-3afe-441b-ac39-62bbf7525b5e",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -384,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://devchatwoot.iacondiego.es/api/v1/accounts/1/conversations/{{ $('When Executed by Another Workflow').item.json['conversation id'] }}/labels",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "gCwFAc6nj7kGQMMbfGM1c1rD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"labels\": [\"asistencia_ia\"]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -128,
+        272
+      ],
+      "id": "5c7afe05-e685-48ee-82ae-d9e895fadef4",
+      "name": "etiqueta_asistencia_ia"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://devchatwoot.iacondiego.es/api/v1/accounts/1/contacts/{{ $('When Executed by Another Workflow').item.json['contact id'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "gCwFAc6nj7kGQMMbfGM1c1rD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"custom_attributes\": {\n    \"bot_off\": \"bot off\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        128,
+        272
+      ],
+      "id": "b4fead58-4efc-4822-a92a-b953fdae669a",
+      "name": "apagar bot1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3db5a7b3-8437-4425-87af-0e4826d3fae5",
+              "name": "mensaje enviado",
+              "value": "Perfecto, te voy a transferir con el equipo correspondiente para que puedan ayudarte directamente. Muchas gracias por tu paciencia, en breve te atenderán.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        352,
+        272
+      ],
+      "id": "00c3f3bf-a94b-415a-86b3-d0654d1f50ac",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "etiqueta_asistencia_ia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "etiqueta_asistencia_ia": {
+      "main": [
+        [
+          {
+            "node": "apagar bot1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "apagar bot1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": null,
+  "tags": []
+}

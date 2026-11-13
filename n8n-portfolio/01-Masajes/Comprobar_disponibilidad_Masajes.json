@@ -1,0 +1,188 @@
+{
+  "updatedAt": "2025-09-13T19:46:31.000Z",
+  "createdAt": "2025-09-10T22:57:00.589Z",
+  "id": "G9LXGDAJ0Hdc1ivX",
+  "name": "Comprobar disponibilidad masajes",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "dia_solicitado",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "7391cf68-8265-48d6-b808-b0eb98cdfff9",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -96,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Dia solicitado:  {{ $json.dia_solicitado }}",
+        "options": {
+          "systemMessage": "=Eres asistente, tu unica tarea es obtener los horarios que estan ocupados y los horarios que no en el dia que se indico.\n\n##Herramientas disponibles\n\n- **citas_agendadas**: Usa esta herramienta para obtener las citas del dia solicitado\n\n- **think** (IMPORTANTE) \n  Usar esta herramienta SIEMPRE!. Resume mentalmente el problema y planifica la respuesta.\n \n\n## Instrucciones especificas\n\n-Debes dar en formato lista los horarios ocupados. \nEjemplo:\nHorarios ocupados: \n-11:00 a 12:00\n-12:00 a 13:00\nHorarios desocupados: \n-14:00 a 16:00... etc\n\nLos horarios en lo que se da cita son estos: (\"Horarios\")\nLunes y miercoles: 9:30, 11:00, 14:00, 15:30, 17:00, 18:30.\n\n-Martes, jueves y viernes: 8:00, 9:30, 11:00, 14:00, 15:30, 17:00, 18:30.\n\n-Sabados: 8:00, 9:30, 11:00, 13:00\"\n\n#Notas importantes\n-La fecha de hoy es: {{ $now }}\n-Teniendo en cuenta \"Horarios\" debes ordenar que horarios estan ocupados y cuales desocupados.\n-Formato estricto de respuesta: \"Horarios ocupados: \\n- 11:00 a 12:00\\n- 15:30 a 16:30\\n\\nHorarios desocupados:\\n- 8:00 a 9:30\\n- 9:30 a 11:00\\n- 14:00 a 15:30\\n- 17:00 a 18:30\\n- 18:30 en adelante\"\n-Los turnos son de una hora. Hay media hora de descanso entre cada turno.\nEjemplos: Turnos dia lunes y miercoles: 9:30 a 10:30, 11:00 a 12:00, 14:00 a 15:00, 15:30 a 16:30, 17:00 a 18:00 y 18:30 a 19:30.\n\nSon los horarios que te mencione en \"Horarios\" pero se les debe sumar unicamente una hora. O sea, los horarios que te di son cuando inicia el turno y para saber cuando termina se le suma una hora."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        144,
+        -112
+      ],
+      "id": "148071ba-1d5e-4fb4-b809-778ca97f2123",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        112
+      ],
+      "id": "94270f05-0d6e-44d2-871e-d1209183a892",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "openAiApi credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "[Nombre del negocio]"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        144
+      ],
+      "id": "7f8e18cf-ca40-4d07-891f-c584ccacb838",
+      "name": "citas_agendadas",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "googleCalendarOAuth2Api credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener el texto del nodo anterior\nconst input = $json[\"output\"];\n\n// Buscar horarios ocupados y desocupados con regex\nconst ocupadosMatch = input.match(/Horarios ocupados:\\s*([\\s\\S]*?)Horarios desocupados:/);\nconst libresMatch = input.match(/Horarios desocupados:\\s*([\\s\\S]*)/);\n\nconst ocupados = ocupadosMatch ? ocupadosMatch[1].trim().replace(/\\n/g, \" \") : \"N/A\";\nconst libres = libresMatch ? libresMatch[1].trim().replace(/\\n/g, \" \") : \"N/A\";\n\n// Retornar en el formato que pide n8n\nreturn [\n  {\n    json: {\n      resultado: `- Horarios ocupados: ${ocupados}\\n- Horarios libres: ${libres}`\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        -112
+      ],
+      "id": "87726a78-56a8-4e80-aed5-b0adb881c400",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "description": "Herramienta para reflexionar y planificar antes de responder. Úsala siempre para analizar el contexto, entender la intención del usuario y decidir los próximos pasos."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        224
+      ],
+      "id": "85b9c02a-507d-47d0-9d50-b694b13e7cef",
+      "name": "Think"
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "citas_agendadas": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": null,
+  "tags": []
+}

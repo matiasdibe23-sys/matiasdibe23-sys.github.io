@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kleur. Hair &amp; Makeup – San Pedro Garza García</title>
+<meta name="description" content="Kleur Hair &amp; Makeup – Salón boutique en San Pedro Garza García. Especialistas en rubios, balayage, colorimetría y maquillaje profesional.">
+<meta property="og:title" content="Kleur. Hair &amp; Makeup – San Pedro G.G.">
+<meta property="og:description" content="Creamos colores que enamoran. Rubios, colorimetría y maquillaje en Plaza La Aurora.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FF4FA3">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --rosa: #FF4FA3;
+    --rosa-oscuro: #e6398e;
+    --rosa-claro: #fff0f7;
+    --negro: #1A1A1A;
+    --gris: #6B6B6B;
+    --blanco: #FFFFFF;
+    --crema: #FFF8FC;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--negro); background: var(--blanco); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,79,163,0.12);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: var(--negro); letter-spacing: -0.02em; text-decoration: none; }
+  .nav-logo span { color: var(--rosa); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--negro); font-size: 0.84rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rosa); }
+  .btn-cita {
+    background: var(--rosa); color: var(--blanco) !important;
+    padding: 0.55rem 1.4rem; border-radius: 30px;
+    font-size: 0.8rem !important; font-weight: 600 !important;
+    transition: background 0.2s !important; text-decoration: none;
+  }
+  .btn-cita:hover { background: var(--rosa-oscuro) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1A1A 0%, #2d1020 50%, #3d1530 100%);
+    display: flex; align-items: center; padding: 6rem 2rem 4rem;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rosa); margin-bottom: 1.2rem; display: block; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,5vw,4.5rem); font-weight: 500; color: var(--blanco); line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--rosa); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.68); max-width: 440px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--rosa); color: var(--blanco); text-decoration: none; padding: 0.9rem 2.2rem; font-size: 0.84rem; font-weight: 600; border-radius: 30px; transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--rosa-oscuro); transform: translateY(-2px); }
+  .btn-outline { border: 1px solid rgba(255,255,255,0.4); color: var(--blanco); text-decoration: none; padding: 0.9rem 2.2rem; font-size: 0.84rem; font-weight: 400; border-radius: 30px; transition: background 0.2s; display: inline-block; }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+  .hero-img-col { display: flex; align-items: center; justify-content: center; }
+  .hero-badge-wrap { position: relative; display: inline-block; }
+  .hero-circle { width: 380px; height: 380px; border-radius: 50%; background: linear-gradient(135deg, #FF4FA3, #e6398e, #c0206e); display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+  .badge-float { position: absolute; bottom: 20px; right: -20px; background: var(--blanco); border-radius: 12px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+  .badge-float strong { display: block; font-size: 1.6rem; font-weight: 700; color: var(--rosa); }
+  .badge-float span { font-size: 0.72rem; color: var(--gris); }
+
+  /* SECCIÓN GENÉRICA */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rosa); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 500; color: var(--negro); margin-bottom: 1rem; line-height: 1.2; }
+  .section-sub { color: var(--gris); line-height: 1.8; max-width: 580px; font-size: 0.95rem; }
+  .divider { width: 48px; height: 2px; background: var(--rosa); margin: 1.5rem 0; }
+
+  /* SERVICIOS */
+  .services-section { background: var(--crema); }
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+  .services-header .section-sub, .services-header .divider { margin: 1rem auto; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .service-card { background: var(--blanco); border-radius: 16px; padding: 2.2rem; box-shadow: 0 2px 20px rgba(255,79,163,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,79,163,0.14); }
+  .service-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--negro); }
+  .service-card p { font-size: 0.85rem; color: var(--gris); line-height: 1.7; margin-bottom: 1.2rem; }
+  .service-price { font-size: 0.8rem; font-weight: 700; color: var(--rosa); letter-spacing: 0.05em; }
+
+  /* ESPECIALIDADES */
+  .esp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .esp-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .esp-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.4rem; background: var(--rosa-claro); border-radius: 12px; border-left: 3px solid var(--rosa); }
+  .esp-item-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .esp-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .esp-item p { font-size: 0.83rem; color: var(--gris); line-height: 1.6; }
+  .esp-visual { aspect-ratio: 1; background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro)); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+
+  /* EQUIPO */
+  .team-section { background: var(--crema); }
+  .team-header { text-align: center; margin-bottom: 3.5rem; }
+  .team-header .section-sub, .team-header .divider { margin: 1rem auto; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .team-card { background: var(--blanco); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); text-align: center; }
+  .team-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+  .team-img.c1 { background: linear-gradient(135deg, #FF4FA3, #e6398e); }
+  .team-img.c2 { background: linear-gradient(135deg, #e6398e, #c0206e); }
+  .team-img.c3 { background: linear-gradient(135deg, #FF4FA3, #ff80c4); }
+  .team-info { padding: 1.5rem; }
+  .team-info h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .team-info .role { font-size: 0.78rem; color: var(--rosa); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .team-info p { font-size: 0.82rem; color: var(--gris); line-height: 1.6; }
+
+  /* RESEÑAS */
+  .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+  .reviews-header .section-sub, .reviews-header .divider { margin: 1rem auto; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .review-card { background: var(--crema); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,79,163,0.1); }
+  .stars { color: var(--rosa); font-size: 1rem; margin-bottom: 1rem; }
+  .review-text { font-size: 0.88rem; color: var(--gris); line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; }
+  .review-author strong { font-size: 0.85rem; display: block; }
+  .review-author span { font-size: 0.75rem; color: var(--gris); }
+
+  /* UBICACIÓN */
+  .location-section { background: #1A1A1A; }
+  .location-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .map-box { aspect-ratio: 4/3; background: linear-gradient(135deg, #2d1020, #3d1530); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+  .location-section .section-label { color: var(--rosa); }
+  .location-section .section-title { color: var(--blanco); }
+  .location-section .section-sub { color: rgba(255,255,255,0.6); }
+  .location-section .divider { background: var(--rosa); }
+  .loc-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon { width: 42px; height: 42px; background: var(--rosa); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .loc-text strong { display: block; color: var(--blanco); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.6; display: block; }
+  .loc-text a { color: var(--rosa); text-decoration: none; }
+  .loc-text a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #0d0008; color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.55); }
+  .footer-col h5 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rosa); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--blanco); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: rgba(255,255,255,0.35); max-width: 1100px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .hero-inner, .esp-grid, .location-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .team-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .hero-img-col { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Kleur<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-cita">Agendar cita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">San Pedro Garza García · Plaza La Aurora</span>
+      <h1>Colores que<br><em>enamoran</em></h1>
+      <p class="hero-sub">Somos especialistas en rubios, balayage y colorimetría. Cada cliente es una obra de arte diferente — y tú mereces el tuyo.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary">Agendar cita</a>
+        <a href="#servicios" class="btn-outline">Ver servicios</a>
+      </div>
+    </div>
+    <div class="hero-img-col">
+      <div class="hero-badge-wrap">
+        <div class="hero-circle">✂️</div>
+        <div class="badge-float">
+          <strong>5★</strong>
+          <span>Reseñas Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <p class="section-label">Lo que hacemos</p>
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Desde el corte más clásico hasta la colorimetría más técnica. Todo con productos profesionales de primera calidad.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🌟</span>
+        <h3>Balayage &amp; Mechas</h3>
+        <p>Técnica de iluminación a mano alzada para resultados naturales y degradados perfectos. La favorita de nuestras clientas.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💛</span>
+        <h3>Rubios</h3>
+        <p>Especialistas en todo el espectro del rubio: platinado, cenizo, arena, dorado. Cuidamos la salud de tu cabello en cada proceso.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <h3>Colorimetría</h3>
+        <p>Color en toda su extensión: tinte completo, retoque de raíz, matizados y técnicas de fusión de color personalizadas.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <h3>Corte y Peinado</h3>
+        <p>Cortes con visión estética y técnica. Desde el degradado más preciso hasta el largo más romántico, adaptado a tu rostro.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💄</span>
+        <h3>Maquillaje</h3>
+        <p>Maquillaje profesional para bodas, eventos especiales y sesiones fotográficas. Realzamos tu belleza natural.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💆</span>
+        <h3>Tratamientos capilares</h3>
+        <p>Hidratación profunda, keratina, proteínas y reconstrucción capilar para devolver vida y brillo a tu cabello.</p>
+        <span class="service-price">Consultar precio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades">
+  <div class="container">
+    <div class="esp-grid">
+      <div>
+        <p class="section-label">Por qué elegirnos</p>
+        <h2 class="section-title">Experiencia y pasión en cada servicio</h2>
+        <div class="divider"></div>
+        <p class="section-sub">En Kleur combinamos formación técnica de alto nivel con una visión artística única. No seguimos tendencias — las creamos.</p>
+        <div class="esp-list">
+          <div class="esp-item">
+            <span class="esp-item-icon">🎓</span>
+            <div>
+              <h4>Formación internacional</h4>
+              <p>Nuestro equipo se capacita continuamente en México y el extranjero con las mejores marcas y técnicos del mundo.</p>
+            </div>
+          </div>
+          <div class="esp-item">
+            <span class="esp-item-icon">🧪</span>
+            <div>
+              <h4>Productos profesionales</h4>
+              <p>Trabajamos exclusivamente con marcas profesionales: Wella, Schwarzkopf, Loreal Professionnel y Olaplex.</p>
+            </div>
+          </div>
+          <div class="esp-item">
+            <span class="esp-item-icon">💬</span>
+            <div>
+              <h4>Consulta personalizada</h4>
+              <p>Antes de cada servicio analizamos tu cabello y discutimos tu visión para lograr el resultado que deseas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="esp-visual">✨</div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo" class="team-section">
+  <div class="container">
+    <div class="team-header">
+      <p class="section-label">Las manos detrás de la magia</p>
+      <h2 class="section-title">Nuestro Equipo</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Estilistas apasionadas y comprometidas con la excelencia en cada servicio que ofrecemos.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img c1">👩‍🎨</div>
+        <div class="team-info">
+          <h4>Daniela Kleur</h4>
+          <p class="role">Directora · Colorista Senior</p>
+          <p>Especialista en rubios y balayage con más de 10 años de experiencia. Formada en Ciudad de México, Miami y España.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img c2">👩‍🎨</div>
+        <div class="team-info">
+          <h4>Valentina R.</h4>
+          <p class="role">Colorista · Estilista</p>
+          <p>Dominadora de técnicas de colorimetría avanzada y tratamientos capilares. Enamorada de los matizados y las texturas.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img c3">👩‍🎨</div>
+        <div class="team-info">
+          <h4>Sofía M.</h4>
+          <p class="role">Maquillista Profesional</p>
+          <p>Artista del maquillaje para novias, editoriales y eventos. Su paleta es infinita y su trazo es impecable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section>
+  <div class="container">
+    <div class="reviews-header">
+      <p class="section-label">Lo que dicen nuestras clientas</p>
+      <h2 class="section-title">Amor real, resultados reales</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Cada reseña es una historia de transformación que nos motiva a seguir creciendo.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Llevaba años buscando una estilista que entendiera exactamente lo que quería para mis mechas. Daniela lo logró a la primera. ¡Mi cabello nunca había lucido tan bien!"</p>
+        <div class="review-author"><strong>Paulina T.</strong><span>Google · hace 2 semanas</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"El balayage quedó increíble, muy natural y con mucha profundidad. El ambiente del salón es súper cómodo y el trato del equipo excelente. Ya regresé dos veces más."</p>
+        <div class="review-author"><strong>Karla B.</strong><span>Google · hace 1 mes</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Sofía hizo mi maquillaje para mi boda y fue perfecto. Duró todo el día, se veía natural en fotos y yo me sentí preciosa. No me arrepiento nada de haber elegido a Kleur."</p>
+        <div class="review-author"><strong>Mariana G.</strong><span>Google · hace 3 meses</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion" class="location-section">
+  <div class="container">
+    <div class="location-inner">
+      <div class="map-box">🗺️</div>
+      <div>
+        <p class="section-label">Encuéntranos</p>
+        <h2 class="section-title">Plaza La Aurora,<br>San Pedro G.G.</h2>
+        <div class="divider"></div>
+        <p class="section-sub">En el corazón de San Pedro Garza García, rodeadas de lo mejor de la ciudad.</p>
+        <div class="loc-list">
+          <div class="loc-row">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <strong>Dirección</strong>
+              <span>Plaza La Aurora, Local 12<br>San Pedro Garza García, N.L.</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📲</div>
+            <div class="loc-text">
+              <strong>WhatsApp / Citas</strong>
+              <span><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">+52 811 234 5678</a></span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">🕐</div>
+            <div class="loc-text">
+              <strong>Horario</strong>
+              <span>Lunes – Sábado: 10:00 AM – 8:00 PM<br>Domingos: con cita previa</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📱</div>
+            <div class="loc-text">
+              <strong>Redes sociales</strong>
+              <span>
+                <a href="https://instagram.com/kleur.hair" target="_blank" rel="noopener noreferrer">@kleur.hair</a> en Instagram
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary">Agendar mi cita ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo" style="color:#fff;">Kleur<span style="color:var(--rosa);">.</span></a>
+      <p>Salón boutique en San Pedro Garza García. Especialistas en rubios, balayage, colorimetría y maquillaje profesional.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Balayage &amp; Mechas</a></li>
+        <li><a href="#servicios">Rubios</a></li>
+        <li><a href="#servicios">Colorimetría</a></li>
+        <li><a href="#servicios">Maquillaje</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="https://instagram.com/kleur.hair" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Kleur. Hair &amp; Makeup · San Pedro Garza García, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "updatedAt": "2026-04-28T01:19:44.598Z",
+  "createdAt": "2026-04-28T01:12:04.542Z",
+  "id": "yLlTzKbIf6ldLRcfoO3DN",
+  "name": "WF_3",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"customer_id\": \"5490000000000\",\n  \"texto_mensaje\": \"Hola\",\n  \"session_id\": \"2348392rew324324\"\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4fa0598e-f932-4a91-8e41-66e4a6b5dc03",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "meta": null,
+  "tags": []
+}

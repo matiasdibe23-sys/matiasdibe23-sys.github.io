@@ -1,0 +1,190 @@
+{
+  "updatedAt": "2025-09-05T02:44:04.000Z",
+  "createdAt": "2025-08-28T20:02:25.639Z",
+  "id": "aypPYrQTz74SVZ3Q",
+  "name": "Agente ausencia Masajes",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "body_data_message_conversation",
+              "type": "any"
+            },
+            {
+              "name": "body_instance",
+              "type": "any"
+            },
+            {
+              "name": "body_data_key_remoteJid",
+              "type": "any"
+            },
+            {
+              "name": "id",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "0dea3138-9912-44e6-8a75-958939625143",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -2832,
+        1504
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2704,
+        1728
+      ],
+      "id": "2c4c3046-0b2c-4245-8370-b01261acbef3",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "openAiApi credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "integrations-api",
+        "operation": "evolution-bot",
+        "instanceName": "={{ $('Start').item.json.body_instance }}",
+        "resourceForEvolutionBot": "changeStatusEvolutionBot",
+        "evolutionBotId": "={{ $('Start').item.json.id }}",
+        "remoteJid": "={{ $('Start').item.json.body_data_key_remoteJid }}",
+        "status": "closed"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -2048,
+        1536
+      ],
+      "id": "dc44471f-b120-4539-a897-623cff45ed64",
+      "name": "Evolution bot2",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Mensaje del usuario: {{ $('Start').item.json.body_data_message_conversation }}",
+        "options": {
+          "systemMessage": "=Eres Luz, asistente argentina del [Nombre del negocio].\nSaluda si te saludan, despídete si se despiden.\nInforma siempre que el lavadero no estará en servicio en las fechas: {{ $json.body_data_message_conversation }}.\nSi preguntan otra cosa, recuerda amablemente que el lavadero está cerrado hasta después de esas fechas.\n\nReglas:\n-NO OFREZCAS CITAS. Decile al usuario que por favor se comunique despues de la fecha mencionada.\n-Debes ser extremadamente amable, calida.\n-Usa emojis\n-NO OFREZCAS INFORMACION\n-NO OFREZCAS APOYO CON OTRAS PREGUNTAS."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -2592,
+        1504
+      ],
+      "id": "59834bae-4a8c-4464-a3c8-44a731fcf41e",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Start').item.json.body_instance }}",
+        "remoteJid": "={{ $('Start').item.json.body_data_key_remoteJid }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {
+          "delay": 5000
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -2240,
+        1504
+      ],
+      "id": "a75d18cc-90e9-4fd2-a53d-ad83fccfbbeb",
+      "name": "Cerrar interaccion2",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Cerrar interaccion2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cerrar interaccion2": {
+      "main": [
+        [
+          {
+            "node": "Evolution bot2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": null,
+  "tags": []
+}

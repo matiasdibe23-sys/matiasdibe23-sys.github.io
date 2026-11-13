@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Casa Lucia – Monterrey</title>
+<meta name="description" content="Hotel Casa Lucia – Hotel boutique en el centro histórico de Monterrey. Habitaciones sencilla, doble y junior suite. Reserva directo y obtén las mejores tarifas.">
+<meta property="og:title" content="Hotel Casa Lucia – Hotel Boutique Monterrey">
+<meta property="og:description" content="Un refugio en el corazón de Monterrey. Habitaciones con carácter único.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2D5A1B">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --verde: #2D5A1B;
+    --verde-claro: #4A7C32;
+    --dorado: #C9A84C;
+    --crema: #F8F4EE;
+    --blanco: #FFFFFF;
+    --gris: #6B6B6B;
+    --texto: #2A2A2A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; color: var(--texto); background: var(--blanco); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(45,90,27,0.12);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--verde); letter-spacing: 0.04em; text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--texto); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--verde); }
+  .btn-reservar {
+    background: var(--verde); color: var(--blanco) !important;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-size: 0.78rem !important; font-weight: 600 !important; letter-spacing: 0.1em !important;
+    transition: background 0.2s !important;
+  }
+  .btn-reservar:hover { background: var(--verde-claro) !important; color: var(--blanco) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1a3a0e 0%, #2D5A1B 40%, #4A7C32 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,7vw,5.5rem); font-weight: 300; color: var(--blanco); line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--dorado); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 300; }
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--dorado); color: var(--blanco); text-decoration: none;
+    padding: 0.9rem 2.2rem; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    border-radius: 2px; transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #b8943e; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5); color: var(--blanco); text-decoration: none;
+    padding: 0.9rem 2.2rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    border-radius: 2px; transition: background 0.25s; display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* SECCIONES GENÉRICAS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--verde); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 400; color: var(--texto); margin-bottom: 1rem; line-height: 1.2; }
+  .section-sub { color: var(--gris); line-height: 1.8; max-width: 580px; font-size: 0.95rem; }
+  .divider { width: 48px; height: 2px; background: var(--dorado); margin: 1.5rem 0; }
+
+  /* NOSOTROS */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-box { position: relative; }
+  .about-img-box .img-placeholder {
+    width: 100%; aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #2D5A1B, #4A7C32);
+    border-radius: 3px; display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; color: rgba(255,255,255,0.3);
+  }
+  .about-img-box .tag {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--dorado); color: var(--blanco);
+    padding: 1.2rem 1.5rem; text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .about-img-box .tag strong { display: block; font-size: 2.5rem; font-weight: 500; line-height: 1; }
+  .about-img-box .tag span { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .features { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .feature { display: flex; gap: 1rem; align-items: flex-start; }
+  .feature-icon { width: 42px; height: 42px; background: var(--crema); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .feature-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--texto); }
+  .feature-text span { font-size: 0.82rem; color: var(--gris); }
+
+  /* HABITACIONES */
+  .rooms-section { background: var(--crema); }
+  .rooms-header { text-align: center; margin-bottom: 3.5rem; }
+  .rooms-header .section-sub { margin: 0 auto; }
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .room-card {
+    background: var(--blanco); border-radius: 4px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .room-card:hover { transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
+  .room-img {
+    aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; color: rgba(255,255,255,0.5);
+  }
+  .room-img.sencilla { background: linear-gradient(135deg, #3d6b24, #5a8f38); }
+  .room-img.doble { background: linear-gradient(135deg, #2D5A1B, #3d6b24); }
+  .room-img.suite { background: linear-gradient(135deg, #1a3a0e, #2D5A1B); }
+  .room-info { padding: 1.8rem; }
+  .room-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--texto); }
+  .room-badge { display: inline-block; background: var(--crema); color: var(--verde); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.8rem; }
+  .room-desc { font-size: 0.84rem; color: var(--gris); line-height: 1.7; margin-bottom: 1.2rem; }
+  .room-amenities { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .amenity { font-size: 0.72rem; color: var(--gris); background: var(--crema); padding: 0.25rem 0.7rem; border-radius: 20px; }
+  .room-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 1.2rem; }
+  .room-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--verde); }
+  .room-price small { font-size: 0.75rem; color: var(--gris); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  .btn-book { background: var(--verde); color: var(--blanco); text-decoration: none; padding: 0.6rem 1.3rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s; }
+  .btn-book:hover { background: var(--verde-claro); }
+
+  /* SERVICIOS */
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+  .service-item { text-align: center; padding: 2rem 1rem; }
+  .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .service-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--texto); }
+  .service-item p { font-size: 0.82rem; color: var(--gris); line-height: 1.7; }
+
+  /* GALERÍA */
+  .gallery-section { background: var(--texto); padding: 5rem 2rem; }
+  .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 250px 250px; gap: 1rem; margin-top: 2.5rem; }
+  .gallery-item { border-radius: 3px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: rgba(255,255,255,0.3); }
+  .gallery-item:first-child { grid-row: 1 / 3; }
+  .g1 { background: linear-gradient(135deg, #2D5A1B, #4A7C32); }
+  .g2 { background: linear-gradient(135deg, #1a3a0e, #2D5A1B); }
+  .g3 { background: linear-gradient(135deg, #3d6b24, #5a8f38); }
+  .g4 { background: linear-gradient(135deg, #4A7C32, #6aaa48); }
+  .g5 { background: linear-gradient(135deg, #2D5A1B, #1a3a0e); }
+  .gallery-section .section-label { color: var(--dorado); }
+  .gallery-section .section-title { color: var(--blanco); }
+
+  /* UBICACIÓN */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .map-placeholder { aspect-ratio: 1; background: linear-gradient(135deg, var(--crema), #e8e0d4); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+  .location-info { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .loc-item { display: flex; gap: 1rem; }
+  .loc-icon { width: 44px; height: 44px; background: var(--verde); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .loc-text strong { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: var(--gris); line-height: 1.6; display: block; }
+
+  /* RESEÑAS */
+  .reviews-section { background: var(--crema); }
+  .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .review-card { background: var(--blanco); padding: 2rem; border-radius: 4px; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
+  .stars { color: var(--dorado); font-size: 1rem; margin-bottom: 1rem; }
+  .review-text { font-size: 0.88rem; color: var(--gris); line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; }
+  .review-author strong { font-size: 0.85rem; display: block; }
+  .review-author span { font-size: 0.75rem; color: var(--gris); }
+
+  /* FOOTER */
+  footer { background: #0e2208; color: rgba(255,255,255,0.75); padding: 4rem 2rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; color: var(--blanco) !important; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.6); }
+  .footer-col h5 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--blanco); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+  @media (max-width: 900px) {
+    .about-grid, .location-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-row: auto; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .about-img-box .tag { right: 0; bottom: -1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">Casa Lucia</a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#habitaciones">Habitaciones</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-reservar">Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Centro Histórico · Monterrey, N.L.</p>
+    <h1>Un refugio en el<br><em>corazón</em> de Monterrey</h1>
+    <p class="hero-sub">Hotel boutique donde el diseño contemporáneo y la calidez mexicana se encuentran. Cada habitación cuenta una historia.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary">Reservar ahora</a>
+      <a href="#habitaciones" class="btn-outline">Ver habitaciones</a>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-box">
+        <div class="img-placeholder">🏛️</div>
+        <div class="tag">
+          <strong>10+</strong>
+          <span>Años de<br>hospitalidad</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">Nuestra historia</p>
+        <h2 class="section-title">Donde la arquitectura habla y el alma descansa</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Hotel Casa Lucia nació del amor por el patrimonio arquitectónico de Monterrey. Una casona del siglo XIX cuidadosamente restaurada para ofrecer confort moderno sin perder su esencia histórica.</p>
+        <p class="section-sub" style="margin-top:1rem;">Cada rincón del hotel ha sido diseñado para crear momentos únicos: desde el patio central hasta los detalles artesanales en cada habitación.</p>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">🏛️</div>
+            <div class="feature-text">
+              <strong>Casona restaurada</strong>
+              <span>Arquitectura original del siglo XIX con intervención contemporánea</span>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🍃</div>
+            <div class="feature-text">
+              <strong>Patio central</strong>
+              <span>Espacio verde para descansar y conectar con la naturaleza</span>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">⭐</div>
+            <div class="feature-text">
+              <strong>Servicio personalizado</strong>
+              <span>Atención boutique adaptada a cada huésped</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABITACIONES -->
+<section id="habitaciones" class="rooms-section">
+  <div class="container">
+    <div class="rooms-header">
+      <p class="section-label">Alojamiento</p>
+      <h2 class="section-title">Nuestras Habitaciones</h2>
+      <div class="divider" style="margin: 1rem auto;"></div>
+      <p class="section-sub">Tres categorías diseñadas para satisfacer distintas necesidades, con el mismo nivel de confort y carácter único que define a Casa Lucia.</p>
+    </div>
+    <div class="rooms-grid">
+
+      <!-- Habitación Sencilla -->
+      <div class="room-card">
+        <div class="room-img sencilla">🛏️</div>
+        <div class="room-info">
+          <span class="room-badge">1 Persona</span>
+          <h3>Habitación Sencilla</h3>
+          <p class="room-desc">Perfecta para el viajero solo que busca comodidad y estilo. Cama individual, baño privado y vista al patio interior.</p>
+          <div class="room-amenities">
+            <span class="amenity">Wi-Fi incluido</span>
+            <span class="amenity">Aire acondicionado</span>
+            <span class="amenity">TV Smart</span>
+            <span class="amenity">Baño privado</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">desde $850 <small>/ noche</small></div>
+            <a href="https://wa.me/528112345678?text=Quiero%20reservar%20habitaci%C3%B3n%20sencilla" target="_blank" rel="noopener noreferrer" class="btn-book">Reservar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Habitación Doble -->
+      <div class="room-card">
+        <div class="room-img doble">🛏️</div>
+        <div class="room-info">
+          <span class="room-badge">2 Personas</span>
+          <h3>Habitación Doble</h3>
+          <p class="room-desc">Ideal para parejas o compañeros de viaje. Cama matrimonial o dos camas individuales, amplio espacio y toda la comodidad.</p>
+          <div class="room-amenities">
+            <span class="amenity">Wi-Fi incluido</span>
+            <span class="amenity">Aire acondicionado</span>
+            <span class="amenity">TV Smart</span>
+            <span class="amenity">Baño privado</span>
+            <span class="amenity">Mini refrigerador</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">desde $1,200 <small>/ noche</small></div>
+            <a href="https://wa.me/528112345678?text=Quiero%20reservar%20habitaci%C3%B3n%20doble" target="_blank" rel="noopener noreferrer" class="btn-book">Reservar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Junior Suite -->
+      <div class="room-card">
+        <div class="room-img suite">✨</div>
+        <div class="room-info">
+          <span class="room-badge">Suite</span>
+          <h3>Junior Suite</h3>
+          <p class="room-desc">La experiencia más completa del hotel. Sala de estar independiente, cama king size, bañera de inmersión y terraza privada.</p>
+          <div class="room-amenities">
+            <span class="amenity">Wi-Fi incluido</span>
+            <span class="amenity">Aire acondicionado</span>
+            <span class="amenity">TV Smart 55"</span>
+            <span class="amenity">Bañera</span>
+            <span class="amenity">Terraza privada</span>
+            <span class="amenity">Sala de estar</span>
+          </div>
+          <div class="room-footer">
+            <div class="room-price">desde $2,100 <small>/ noche</small></div>
+            <a href="https://wa.me/528112345678?text=Quiero%20reservar%20junior%20suite" target="_blank" rel="noopener noreferrer" class="btn-book">Reservar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div style="text-align:center;">
+      <p class="section-label">Lo que ofrecemos</p>
+      <h2 class="section-title">Servicios del Hotel</h2>
+      <div class="divider" style="margin: 1rem auto;"></div>
+      <p class="section-sub" style="margin: 0 auto;">Todo lo que necesitas para una estancia perfecta, incluido en tu tarifa o disponible bajo solicitud.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">
+        <span class="service-icon">☕</span>
+        <h4>Desayuno incluido</h4>
+        <p>Desayuno continental con productos locales cada mañana en nuestro comedor.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🚗</span>
+        <h4>Estacionamiento</h4>
+        <p>Estacionamiento privado y seguro para los huéspedes del hotel, sin costo adicional.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🌿</span>
+        <h4>Jardín y patio</h4>
+        <p>Espacios verdes para relajarse, desconectarse y disfrutar del clima de Monterrey.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">📍</span>
+        <h4>Concierge local</h4>
+        <p>Te ayudamos a descubrir lo mejor del centro histórico: restaurantes, museos y actividades.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🧹</span>
+        <h4>Limpieza diaria</h4>
+        <p>Servicio de limpieza y cambio de toallas todos los días para tu comodidad.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">📶</span>
+        <h4>Wi-Fi de alta velocidad</h4>
+        <p>Conexión de fibra óptica en todas las áreas del hotel, sin contraseñas complicadas.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🎭</span>
+        <h4>Tours culturales</h4>
+        <p>Coordinamos visitas guiadas por el centro histórico y los museos de Monterrey.</p>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🛎️</span>
+        <h4>Servicio 24 hrs</h4>
+        <p>Recepción disponible las 24 horas para atender cualquier necesidad de los huéspedes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery-section">
+  <div class="container">
+    <p class="section-label">Galería</p>
+    <h2 class="section-title" style="color:#fff;">Descubre cada espacio</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item g1">🏛️</div>
+      <div class="gallery-item g2">🛏️</div>
+      <div class="gallery-item g3">🌿</div>
+      <div class="gallery-item g4">☕</div>
+      <div class="gallery-item g5">✨</div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="location-grid">
+      <div class="map-placeholder">🗺️</div>
+      <div>
+        <p class="section-label">Cómo llegarnos</p>
+        <h2 class="section-title">En el corazón del centro histórico</h2>
+        <div class="divider"></div>
+        <p class="section-sub">A pasos del Macroplaza, la Catedral Metropolitana y los principales museos de Monterrey.</p>
+        <div class="location-info">
+          <div class="loc-item">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <strong>Dirección</strong>
+              <span>Calle Morelos #234, Centro Histórico<br>Monterrey, N.L. 64000</span>
+            </div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-icon">📞</div>
+            <div class="loc-text">
+              <strong>Teléfono / WhatsApp</strong>
+              <span><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" style="color:var(--verde);">+52 811 234 5678</a></span>
+            </div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-icon">✉️</div>
+            <div class="loc-text">
+              <strong>Correo electrónico</strong>
+              <span>reservas@hotelcasalucia.mx</span>
+            </div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-icon">🕐</div>
+            <div class="loc-text">
+              <strong>Check-in / Check-out</strong>
+              <span>Entrada: 3:00 PM · Salida: 12:00 PM<br>Check-in anticipado sujeto a disponibilidad</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background:var(--verde);">Reservar vía WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <p class="section-label">Lo que dicen nuestros huéspedes</p>
+      <h2 class="section-title">Experiencias reales</h2>
+      <div class="divider" style="margin: 1rem auto;"></div>
+      <p class="section-sub" style="margin:0 auto;">La satisfacción de cada huésped es nuestra mayor recompensa.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Un lugar mágico en pleno centro de Monterrey. La habitación doble superó mis expectativas y el desayuno estaba delicioso. Definitivamente regresaré."</p>
+        <div class="review-author"><strong>María G.</strong><span>Google · hace 1 mes</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"La Junior Suite es un sueño. La bañera, la terraza y el trato personalizado del personal hacen que valga cada peso. Muy recomendable para una escapada romántica."</p>
+        <div class="review-author"><strong>Carlos R.</strong><span>Google · hace 2 meses</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Estuve por trabajo y la habitación sencilla era perfecta: limpia, tranquila y bien ubicada. El Wi-Fi excelente. El staff muy amable y servicial."</p>
+        <div class="review-author"><strong>Ana P.</strong><span>Google · hace 3 semanas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo">Casa Lucia</a>
+      <p>Hotel boutique en el centro histórico de Monterrey. Un refugio de diseño, historia y calidez en el corazón de la ciudad.</p>
+    </div>
+    <div class="footer-col">
+      <h5>El Hotel</h5>
+      <ul>
+        <li><a href="#nosotros">Nuestra historia</a></li>
+        <li><a href="#habitaciones">Habitaciones</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galería">Galería</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="mailto:reservas@hotelcasalucia.mx">Correo electrónico</a></li>
+        <li><a href="#ubicacion">Cómo llegar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Hotel Casa Lucia · Monterrey, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>

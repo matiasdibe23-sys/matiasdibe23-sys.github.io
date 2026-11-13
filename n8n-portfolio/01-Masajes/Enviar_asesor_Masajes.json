@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-09-05T02:45:42.000Z",
+  "createdAt": "2025-08-28T20:05:03.892Z",
+  "id": "jeXy0zIobtU19wkC",
+  "name": "Enviar asesor Masajes",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"numero_del_usuario\": \"5490000000000\",\n    \"Asunto\": \"Transfirio el monto equivocado\",\n  \"Instancia\": \"Prueba Chatbot\"\n}"
+      },
+      "id": "22766e82-f0ec-476a-a0c1-11e0425bab5e",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -384,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $json.Instancia }}",
+        "remoteJid": "5490000000000@s.whatsapp.net",
+        "messageText": "={{ $json.numero_del_usuario }} {{ $json.Asunto }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        272
+      ],
+      "id": "d930fba8-e616-4d0a-8360-8cd3d5c343e5",
+      "name": "Enviar texto",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": null,
+  "tags": []
+}

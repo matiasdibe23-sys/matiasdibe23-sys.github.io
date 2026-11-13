@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veterinaria Happy Dog – Monterrey</title>
+<meta name="description" content="Veterinaria Happy Dog Monterrey – Consultas, estética canina, vacunas, cirugías y hospitalización. 100% recomendado, 21 reseñas 5 estrellas.">
+<meta property="og:title" content="Veterinaria Happy Dog – Monterrey">
+<meta property="og:description" content="Tu mascota en las mejores manos. Consultas, estética canina, vacunas y más.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1A8FE3">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --azul: #1A8FE3;
+    --azul-oscuro: #1478C8;
+    --azul-claro: #E8F4FD;
+    --verde: #28C76F;
+    --naranja: #FF9F43;
+    --blanco: #FFFFFF;
+    --crema: #F8FBFF;
+    --gris: #6B7080;
+    --texto: #1E2533;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito Sans', sans-serif; color: var(--texto); background: var(--blanco); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+    box-shadow: 0 1px 24px rgba(26,143,227,0.1);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  }
+  .nav-logo { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--azul); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--texto); font-size: 0.87rem; font-weight: 600; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--azul); }
+  .btn-cita { background: var(--azul); color: var(--blanco) !important; padding: 0.6rem 1.5rem; border-radius: 30px; font-size: 0.85rem !important; font-weight: 700 !important; text-decoration: none; transition: background 0.2s !important; }
+  .btn-cita:hover { background: var(--azul-oscuro) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a4f8c 0%, #1A8FE3 50%, #4db3f7 100%);
+    display: flex; align-items: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: var(--blanco); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 30px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'Nunito', sans-serif; font-size: clamp(2.8rem,5.5vw,4.5rem); font-weight: 800; color: var(--blanco); line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 span { background: rgba(255,255,255,0.2); padding: 0 0.3em; border-radius: 6px; }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.78); max-width: 460px; line-height: 1.8; font-weight: 400; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-white { background: var(--blanco); color: var(--azul); text-decoration: none; padding: 1rem 2.5rem; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 800; border-radius: 30px; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+  .btn-outline-w { border: 2px solid rgba(255,255,255,0.5); color: var(--blanco); text-decoration: none; padding: 1rem 2.5rem; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; border-radius: 30px; transition: background 0.2s; display: inline-block; }
+  .btn-outline-w:hover { background: rgba(255,255,255,0.12); }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.2); flex-wrap: wrap; }
+  .stat-item { }
+  .stat-num { font-family: 'Nunito', sans-serif; font-size: 2rem; font-weight: 800; color: var(--blanco); display: block; line-height: 1; }
+  .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; }
+  .hero-img-col { display: flex; align-items: center; justify-content: center; }
+  .hero-circle { width: 380px; height: 380px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 3px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 9rem; position: relative; }
+  .badge-verified { position: absolute; bottom: 30px; right: -10px; background: var(--verde); color: var(--blanco); border-radius: 12px; padding: 0.8rem 1.2rem; box-shadow: 0 6px 24px rgba(40,199,111,0.3); text-align: center; }
+  .badge-verified strong { display: block; font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 800; }
+  .badge-verified span { font-size: 0.7rem; letter-spacing: 0.05em; }
+
+  /* SECCIÓN GENÉRICA */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-badge { display: inline-block; background: var(--azul-claro); color: var(--azul); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 30px; margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Nunito', sans-serif; font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; color: var(--texto); margin-bottom: 1rem; line-height: 1.15; }
+  .section-sub { color: var(--gris); line-height: 1.8; max-width: 580px; font-size: 0.95rem; }
+
+  /* SERVICIOS */
+  .services-section { background: var(--crema); }
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+  .services-header .section-sub { margin: 0 auto; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--blanco); border-radius: 20px; padding: 2rem; box-shadow: 0 2px 20px rgba(26,143,227,0.06); border: 2px solid transparent; transition: border-color 0.2s, transform 0.2s; }
+  .service-card:hover { border-color: var(--azul); transform: translateY(-4px); }
+  .service-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.2rem; }
+  .icon-azul { background: var(--azul-claro); }
+  .icon-verde { background: #E8FBF2; }
+  .icon-naranja { background: #FFF4E8; }
+  .service-card h3 { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--texto); }
+  .service-card p { font-size: 0.85rem; color: var(--gris); line-height: 1.7; }
+
+  /* POR QUÉ ELEGIRNOS */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .why-visual { aspect-ratio: 4/5; background: linear-gradient(135deg, var(--azul-claro), #cce8fa); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+  .why-points { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .why-point { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .check-icon { width: 40px; height: 40px; background: var(--verde); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; color: var(--blanco); font-weight: 700; }
+  .why-point h4 { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .why-point p { font-size: 0.83rem; color: var(--gris); line-height: 1.6; }
+
+  /* EMERGENCIAS */
+  .emergency-section { background: linear-gradient(135deg, #0a4f8c, #1A8FE3); text-align: center; }
+  .emergency-section h2 { font-family: 'Nunito', sans-serif; font-size: clamp(2rem,4vw,3rem); font-weight: 800; color: var(--blanco); margin-bottom: 1rem; }
+  .emergency-section p { color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 2rem; line-height: 1.8; font-size: 1rem; }
+  .emergency-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: var(--blanco); padding: 0.6rem 1.5rem; border-radius: 30px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; margin-bottom: 2rem; }
+
+  /* RESEÑAS */
+  .reviews-section { background: var(--crema); }
+  .reviews-header { text-align: center; margin-bottom: 3.5rem; }
+  .reviews-header .section-sub { margin: 0 auto; }
+  .rating-banner { background: var(--azul); color: var(--blanco); border-radius: 20px; padding: 2rem; display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; text-align: center; }
+  .rating-big { font-family: 'Nunito', sans-serif; font-size: 4rem; font-weight: 800; color: var(--blanco); line-height: 1; }
+  .rating-stars { font-size: 1.8rem; color: var(--naranja); margin: 0.3rem 0; }
+  .rating-sub { font-size: 0.85rem; color: rgba(255,255,255,0.75); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .review-card { background: var(--blanco); padding: 2rem; border-radius: 16px; box-shadow: 0 2px 16px rgba(26,143,227,0.06); }
+  .stars { color: var(--naranja); font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.88rem; color: var(--gris); line-height: 1.8; margin-bottom: 1.2rem; }
+  .review-author { display: flex; align-items: center; gap: 0.8rem; }
+  .review-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--azul-claro); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .review-author strong { display: block; font-size: 0.85rem; font-family: 'Nunito', sans-serif; font-weight: 700; }
+  .review-author span { font-size: 0.75rem; color: var(--gris); }
+
+  /* UBICACIÓN */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .map-box { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--azul-claro), #cce8fa); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+  .loc-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+  .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon { width: 44px; height: 44px; background: var(--azul); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .loc-text strong { display: block; font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 800; margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: var(--gris); line-height: 1.6; display: block; }
+  .loc-text a { color: var(--azul); text-decoration: none; font-weight: 700; }
+  .loc-text a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #0a2240; color: rgba(255,255,255,0.65); padding: 4rem 2rem 2rem; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 3rem; }
+  .footer-brand { }
+  .footer-logo { font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--blanco); display: block; margin-bottom: 0.8rem; text-decoration: none; }
+  .footer-brand p { font-size: 0.83rem; line-height: 1.8; color: rgba(255,255,255,0.5); }
+  .footer-col h5 { font-family: 'Nunito', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--naranja); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--blanco); }
+  .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: rgba(255,255,255,0.3); max-width: 1100px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .hero-inner, .why-grid, .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .hero-img-col { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .rating-banner { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+  <a href="#inicio" class="nav-logo">🐾 Happy Dog</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#reseñas">Reseñas</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-cita">Agendar cita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🐾 Monterrey, N.L. · 21 reseñas 5 estrellas</div>
+      <h1>Tu mascota merece<br>lo mejor.<br><span>Siempre.</span></h1>
+      <p class="hero-sub">Veterinaria Happy Dog — donde cada paciente peludo recibe atención médica de calidad, con amor y profesionalismo. Consultas, vacunas, cirugías y estética canina.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-white">Agendar consulta</a>
+        <a href="#servicios" class="btn-outline-w">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">21</span>
+          <span class="stat-label">Reseñas 5★</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Recomendado</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">8+</span>
+          <span class="stat-label">Años atendiendo</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img-col">
+      <div class="hero-circle">
+        🐶
+        <div class="badge-verified">
+          <strong>5.0</strong>
+          <span>★ Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-badge">Nuestros servicios</div>
+      <h2 class="section-title">Todo lo que tu mascota necesita</h2>
+      <p class="section-sub">Atención veterinaria integral con el equipo médico más preparado de Monterrey. Porque tu mascota es parte de la familia.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon icon-azul">🩺</div>
+        <h3>Consulta General</h3>
+        <p>Revisión completa de salud para perros y gatos. Diagnóstico preciso y plan de tratamiento personalizado para cada mascota.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-verde">💉</div>
+        <h3>Vacunas y Desparasitación</h3>
+        <p>Esquema completo de vacunación y desparasitación interna y externa. Protege a tu mascota de las principales enfermedades.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-naranja">🛁</div>
+        <h3>Estética Canina</h3>
+        <p>Baño, corte, cepillado, limpieza de oídos y corte de uñas. Tu perro sale hermoso y oloroso. Servicio con mucho cariño.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-azul">🔬</div>
+        <h3>Laboratorio Clínico</h3>
+        <p>Análisis de sangre, orina, coproscópico y más. Resultados en el mismo día para un diagnóstico rápido y oportuno.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-verde">🏥</div>
+        <h3>Cirugías</h3>
+        <p>Procedimientos quirúrgicos con equipo moderno y personal especializado. Castración, esterilización y cirugías de tejidos blandos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-naranja">🛏️</div>
+        <h3>Hospitalización</h3>
+        <p>Área de hospitalización equipada para el monitoreo y recuperación de mascotas que requieren cuidados intensivos o post-operatorios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCIAS -->
+<section class="emergency-section">
+  <div class="container" style="text-align:center;">
+    <div class="emergency-badge">🚨 Urgencias veterinarias</div>
+    <h2>¿Tu mascota necesita<br>atención urgente?</h2>
+    <p>No esperes. Contáctanos de inmediato por WhatsApp. Atendemos urgencias y te orientamos sobre los pasos a seguir.</p>
+    <a href="https://wa.me/528112345678?text=URGENCIA%20-%20Mi%20mascota%20necesita%20atenci%C3%B3n%20inmediata" target="_blank" rel="noopener noreferrer" class="btn-white" style="display:inline-block;">Reportar urgencia ahora</a>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-visual">🐾</div>
+      <div>
+        <div class="section-badge">¿Por qué elegirnos?</div>
+        <h2 class="section-title">Más que una veterinaria,<br>una familia</h2>
+        <p class="section-sub">En Happy Dog creemos que cada mascota merece atención médica de primera. Por eso invertimos en capacitación, equipo y sobre todo, en el trato humano.</p>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Médicos veterinarios certificados</h4>
+              <p>Nuestro equipo cuenta con cédula profesional y actualización constante en las últimas técnicas veterinarias.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Trato con amor y respeto</h4>
+              <p>Tratamos a cada mascota con la misma dedicación y cariño que un miembro de nuestra propia familia.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Instalaciones modernas</h4>
+              <p>Consultorio equipado con tecnología actual para ofrecer diagnósticos precisos y tratamientos efectivos.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Precios transparentes</h4>
+              <p>Sin sorpresas. Te informamos el costo del tratamiento antes de comenzar cualquier procedimiento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="reseñas" class="reviews-section">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-badge">21 reseñas verificadas</div>
+      <h2 class="section-title">100% Recomendado</h2>
+      <p class="section-sub">La confianza de nuestros clientes es nuestro mayor orgullo. Aquí algunas de sus experiencias.</p>
+    </div>
+    <div class="rating-banner">
+      <div>
+        <div class="rating-big">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-sub">21 reseñas en Google</div>
+      </div>
+      <div style="color:rgba(255,255,255,0.7);font-size:1.5rem;">|</div>
+      <div style="text-align:left;">
+        <div style="font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;">100%</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);">de clientes recomendarían<br>Veterinaria Happy Dog</div>
+      </div>
+      <div style="color:rgba(255,255,255,0.7);font-size:1.5rem;">|</div>
+      <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-white" style="font-size:0.9rem;padding:0.8rem 1.8rem;">Agendar consulta</a>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"El Dr. es increíble. Llevé a mi perrita Rocky muy asustada y la trató con tanta paciencia y cariño. El diagnóstico fue preciso y se recuperó rápidamente. ¡100% recomendado!"</p>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div><strong>Patricia H.</strong><span>Google · hace 2 semanas</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"La estética canina es excelente. Mi Labrador sale siempre muy bien bañado y cortado. El personal es muy cariñoso con los perros y se nota que aman los animales."</p>
+        <div class="review-author">
+          <div class="review-avatar">👨</div>
+          <div><strong>Jorge A.</strong><span>Google · hace 1 mes</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Mi gato necesitó cirugía y la atención fue impecable desde la consulta previa hasta el post-operatorio. Muy profesionales y el seguimiento que dieron después fue excelente."</p>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div><strong>Sofía R.</strong><span>Google · hace 3 meses</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <div class="section-badge">Visítanos</div>
+        <h2 class="section-title">Estamos en Monterrey,<br>cerca de ti</h2>
+        <p class="section-sub">Fácil acceso y estacionamiento disponible. Te esperamos con los brazos abiertos — y con tratitos para tu mascota.</p>
+        <div class="loc-list">
+          <div class="loc-row">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <strong>Dirección</strong>
+              <span>Av. Gonzalitos #890, Col. Mitras Centro<br>Monterrey, N.L. 64460</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📲</div>
+            <div class="loc-text">
+              <strong>WhatsApp / Citas</strong>
+              <span><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">+52 811 234 5678</a></span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">🕐</div>
+            <div class="loc-text">
+              <strong>Horario</strong>
+              <span>Lunes – Viernes: 9:00 AM – 7:00 PM<br>Sábado: 9:00 AM – 3:00 PM</span>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📱</div>
+            <div class="loc-text">
+              <strong>Redes sociales</strong>
+              <span><a href="https://instagram.com/veterinariahappydog" target="_blank" rel="noopener noreferrer">@veterinariahappydog</a> en Instagram</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer" class="btn-white" style="background:var(--azul);color:var(--blanco);box-shadow:0 4px 20px rgba(26,143,227,0.3);">Agendar por WhatsApp</a>
+        </div>
+      </div>
+      <div class="map-box">🗺️</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="footer-logo">🐾 Happy Dog</a>
+      <p>Veterinaria en Monterrey. Consultas, estética canina, vacunas, cirugías y hospitalización. 21 reseñas de 5 estrellas en Google.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Consulta General</a></li>
+        <li><a href="#servicios">Vacunas</a></li>
+        <li><a href="#servicios">Estética Canina</a></li>
+        <li><a href="#servicios">Cirugías</a></li>
+        <li><a href="#servicios">Hospitalización</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="https://wa.me/528112345678" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="https://instagram.com/veterinariahappydog" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="#reseñas">Reseñas Google</a></li>
+        <li><a href="#ubicacion">Cómo llegar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Veterinaria Happy Dog · Monterrey, N.L. · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>

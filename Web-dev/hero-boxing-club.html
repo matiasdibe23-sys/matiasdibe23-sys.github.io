@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Boxing Club – Monterrey</title>
+<meta name="description" content="Hero Boxing Club Monterrey – Escuela de boxeo para todos los niveles. Boxeo básico, fitness y competencia. Liga Estatal de Boxeo Nuevo León.">
+<meta property="og:title" content="Hero Boxing Club – Monterrey">
+<meta property="og:description" content="Entrena como campeón. Boxeo para todos los niveles en Monterrey, N.L.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#CC1A1A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & VARIABLES ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #060606;
+    --dark:    #0e0e0e;
+    --mid:     #161616;
+    --border:  #252525;
+    --red:     #CC1A1A;
+    --red2:    #A51515;
+    --red-dim: rgba(204,26,26,.15);
+    --white:   #F4F4F4;
+    --gray:    #777;
+    --font-hero:  'Anton', sans-serif;
+    --font-cond:  'Barlow Condensed', sans-serif;
+    --font-body:  'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); overflow-x: hidden; cursor: none; }
+
+  /* ─── CUSTOM CURSOR ──────────────────────────────────── */
+  .cursor      { width:10px; height:10px; background:var(--red); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform .15s; }
+  .cursor-ring { width:34px; height:34px; border:1.5px solid var(--red); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); opacity:.45; transition:transform .35s ease, opacity .3s; }
+
+  /* ─── NOISE ──────────────────────────────────────────── */
+  body::after { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:.025; pointer-events:none; z-index:9000; }
+
+  /* ─── SCROLLBAR ──────────────────────────────────────── */
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:var(--black); }
+  ::-webkit-scrollbar-thumb { background:var(--red); }
+
+  /* ─── REVEAL ─────────────────────────────────────────── */
+  .reveal       { opacity:0; transform:translateY(40px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible { opacity:1; transform:none; }
+  .reveal-l     { opacity:0; transform:translateX(-50px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal-l.visible { opacity:1; transform:none; }
+  .reveal-r     { opacity:0; transform:translateX(50px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal-r.visible { opacity:1; transform:none; }
+  .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+  /* ─── NAV ────────────────────────────────────────────── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 5vw; height:66px;
+    background:rgba(6,6,6,.88); backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(204,26,26,.2);
+    transition:background .4s;
+  }
+  nav.scrolled { background:rgba(6,6,6,.98); }
+
+  .nav-logo {
+    font-family:var(--font-hero); font-size:clamp(1.2rem,2.5vw,1.45rem);
+    letter-spacing:.1em; color:var(--white); text-decoration:none;
+    display:flex; align-items:center; gap:10px;
+  }
+  .nav-logo-badge {
+    width:34px; height:34px; background:var(--red);
+    clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+    display:grid; place-items:center;
+  }
+  .nav-logo-badge svg { width:18px; height:18px; fill:var(--white); }
+  .nav-logo span { color:var(--red); }
+
+  .nav-links { display:flex; gap:clamp(16px,3vw,40px); list-style:none; }
+  .nav-links a {
+    font-family:var(--font-cond); font-size:.88rem; font-weight:700;
+    letter-spacing:.15em; text-transform:uppercase;
+    color:var(--gray); text-decoration:none; transition:color .25s;
+    position:relative;
+  }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; right:0; height:2px; background:var(--red); transform:scaleX(0); transform-origin:left; transition:transform .3s cubic-bezier(.16,1,.3,1); }
+  .nav-links a:hover { color:var(--white); }
+  .nav-links a:hover::after { transform:scaleX(1); }
+
+  .nav-cta {
+    font-family:var(--font-cond); font-size:.85rem; font-weight:800;
+    letter-spacing:.12em; text-transform:uppercase;
+    background:var(--red); color:var(--white);
+    padding:9px 22px; text-decoration:none;
+    clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+    transition:background .25s, transform .2s;
+  }
+  .nav-cta:hover { background:#e01f1f; transform:scale(1.04); }
+
+  .nav-hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .nav-hamburger span { display:block; width:26px; height:2px; background:var(--white); transition:.3s; }
+
+  .nav-mobile {
+    position:fixed; top:66px; left:0; right:0;
+    background:rgba(6,6,6,.98); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(204,26,26,.2);
+    padding:24px 5vw; display:flex; flex-direction:column; gap:20px;
+    transform:translateY(-120%); transition:transform .35s cubic-bezier(.16,1,.3,1);
+    z-index:999;
+  }
+  .nav-mobile.open { transform:none; }
+  .nav-mobile a { font-family:var(--font-hero); font-size:1.8rem; letter-spacing:.06em; color:var(--white); text-decoration:none; transition:color .25s; }
+  .nav-mobile a:hover { color:var(--red); }
+
+  /* ─── HERO ───────────────────────────────────────────── */
+  #inicio {
+    min-height:100vh;
+    background:var(--black);
+    display:flex; align-items:center;
+    position:relative; overflow:hidden;
+    padding:100px 5vw 80px;
+  }
+
+  .hero-stripes { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .hero-stripes::before {
+    content:'';
+    position:absolute; inset:-50%;
+    background:repeating-linear-gradient(-55deg, transparent 0px, transparent 38px, rgba(204,26,26,.04) 38px, rgba(204,26,26,.04) 40px);
+    animation: stripeMove 18s linear infinite;
+  }
+  @keyframes stripeMove { from { transform:translateX(0) } to { transform:translateX(80px) } }
+
+  .hero-glow {
+    position:absolute; width:700px; height:700px;
+    background:radial-gradient(circle, rgba(204,26,26,.2) 0%, transparent 65%);
+    top:-150px; right:-150px; pointer-events:none;
+  }
+
+  .hero-corner-text {
+    position:absolute; bottom:40px; right:5vw;
+    font-family:var(--font-hero);
+    font-size:clamp(6rem,18vw,14rem);
+    color:rgba(204,26,26,.05);
+    letter-spacing:.04em; line-height:1;
+    pointer-events:none; user-select:none;
+  }
+
+  .hero-content { position:relative; z-index:1; max-width:860px; }
+
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(204,26,26,.12); border:1px solid rgba(204,26,26,.3);
+    padding:7px 16px; margin-bottom:28px;
+    font-family:var(--font-cond); font-size:.78rem; font-weight:700;
+    letter-spacing:.28em; text-transform:uppercase; color:var(--red);
+    opacity:0; animation:fadeUp .7s .2s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .hero-badge::before { content:''; width:6px; height:6px; background:var(--red); border-radius:50%; animation:pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+  .hero-title {
+    font-family:var(--font-hero);
+    font-size:clamp(4.5rem,14vw,10.5rem);
+    line-height:.88; letter-spacing:.02em; color:var(--white);
+    opacity:0; animation:fadeUp .85s .3s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .hero-title .outline { -webkit-text-stroke:2px var(--red); color:transparent; }
+  .hero-title .red { color:var(--red); }
+
+  .hero-sub {
+    font-family:var(--font-cond); font-size:clamp(1rem,2vw,1.25rem);
+    font-weight:400; color:var(--gray); max-width:480px; line-height:1.55;
+    margin-top:28px;
+    opacity:0; animation:fadeUp .8s .48s cubic-bezier(.16,1,.3,1) forwards;
+  }
+
+  .hero-actions {
+    display:flex; flex-wrap:wrap; gap:16px; margin-top:40px;
+    opacity:0; animation:fadeUp .8s .62s cubic-bezier(.16,1,.3,1) forwards;
+  }
+
+  .btn-red {
+    font-family:var(--font-cond); font-size:1rem; font-weight:800;
+    letter-spacing:.12em; text-transform:uppercase;
+    background:var(--red); color:var(--white);
+    padding:16px 36px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:10px;
+    clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+    position:relative; overflow:hidden; transition:background .25s, transform .25s;
+  }
+  .btn-red::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,.15); transform:translateX(-110%) skewX(-15deg); transition:transform .4s; }
+  .btn-red:hover { background:#e01f1f; transform:translateY(-3px); }
+  .btn-red:hover::after { transform:translateX(110%) skewX(-15deg); }
+
+  .btn-outline {
+    font-family:var(--font-cond); font-size:1rem; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:var(--white); padding:15px 36px; text-decoration:none;
+    border:1.5px solid var(--border);
+    display:inline-flex; align-items:center; gap:10px;
+    transition:border-color .25s, color .25s, transform .25s;
+  }
+  .btn-outline:hover { border-color:var(--red); color:var(--red); transform:translateY(-3px); }
+
+  .hero-stats {
+    display:flex; gap:40px; flex-wrap:wrap; margin-top:60px;
+    padding-top:36px; border-top:1px solid var(--border);
+    opacity:0; animation:fadeUp .8s .78s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .stat-num { font-family:var(--font-hero); font-size:clamp(2rem,5vw,2.8rem); color:var(--red); line-height:1; }
+  .stat-label { font-family:var(--font-cond); font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gray); margin-top:4px; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+
+  /* ─── TICKER ─────────────────────────────────────────── */
+  .ticker-wrap { background:var(--red); overflow:hidden; padding:11px 0; }
+  .ticker { display:flex; animation:ticker 20s linear infinite; white-space:nowrap; }
+  .ticker-item {
+    font-family:var(--font-hero); font-size:1rem; letter-spacing:.14em;
+    color:var(--white); padding:0 36px;
+    display:flex; align-items:center; gap:18px;
+  }
+  .ticker-star { width:8px; height:8px; background:rgba(255,255,255,.5); clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ─── SECTION SHARED ─────────────────────────────────── */
+  section { padding:clamp(60px,10vw,120px) 5vw; }
+  .section-tag { font-family:var(--font-cond); font-size:.78rem; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--red); display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .section-tag::before { content:''; display:block; width:22px; height:2px; background:var(--red); }
+  .section-title { font-family:var(--font-hero); font-size:clamp(2.8rem,7vw,5rem); line-height:.9; letter-spacing:.03em; color:var(--white); }
+  .section-title span { color:var(--red); }
+
+  /* ─── CLASES ─────────────────────────────────────────── */
+  #clases { background:var(--dark); }
+  .clases-header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:60px; }
+
+  .clases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+
+  .clase-card {
+    background:var(--mid); padding:44px 36px; position:relative; overflow:hidden;
+    transition:background .3s; cursor:default;
+  }
+  .clase-card::after { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--red); transform:scaleY(0); transform-origin:bottom; transition:transform .4s cubic-bezier(.16,1,.3,1); }
+  .clase-card:hover { background:#1b1b1b; }
+  .clase-card:hover::after { transform:scaleY(1); }
+
+  .clase-num { font-family:var(--font-hero); font-size:4.5rem; color:rgba(204,26,26,.07); position:absolute; top:12px; right:20px; line-height:1; transition:color .3s; }
+  .clase-card:hover .clase-num { color:rgba(204,26,26,.13); }
+
+  .clase-icon { width:52px; height:52px; background:var(--red-dim); border:1.5px solid rgba(204,26,26,.25); display:grid; place-items:center; margin-bottom:26px; transition:background .3s, border-color .3s; }
+  .clase-card:hover .clase-icon { background:rgba(204,26,26,.25); border-color:var(--red); }
+  .clase-icon svg { width:24px; height:24px; stroke:var(--red); fill:none; stroke-width:1.6; }
+
+  .clase-title { font-family:var(--font-hero); font-size:1.75rem; letter-spacing:.04em; color:var(--white); margin-bottom:14px; }
+  .clase-desc { font-size:.9rem; line-height:1.72; color:var(--gray); }
+
+  /* ─── NOSOTROS ───────────────────────────────────────── */
+  #nosotros { background:var(--black); }
+  .nosotros-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+
+  .champ-block {
+    position:relative; background:var(--mid);
+    border:1px solid var(--border); padding:40px;
+    min-height:420px; overflow:hidden;
+  }
+  .champ-block::before {
+    content:'HERO';
+    position:absolute; bottom:-20px; right:-10px;
+    font-family:var(--font-hero); font-size:7rem;
+    color:rgba(204,26,26,.06); line-height:1; pointer-events:none;
+  }
+  .champ-accent { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--red), transparent); }
+  .champ-label { font-family:var(--font-cond); font-size:.7rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--red); margin-bottom:20px; }
+  .champ-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+  .champ-cell { background:var(--dark); padding:28px 24px; }
+  .champ-cell-num { font-family:var(--font-hero); font-size:2.8rem; color:var(--red); line-height:1; margin-bottom:6px; }
+  .champ-cell-text { font-family:var(--font-cond); font-size:.78rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); }
+
+  .champ-bottom { margin-top:2px; background:var(--red); padding:22px 24px; display:flex; align-items:center; gap:16px; }
+  .champ-bottom-icon { width:36px; height:36px; background:rgba(0,0,0,.2); border-radius:50%; display:grid; place-items:center; flex-shrink:0; }
+  .champ-bottom-icon svg { width:18px; height:18px; fill:var(--white); }
+  .champ-bottom-text { font-family:var(--font-cond); font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.9); line-height:1.5; }
+
+  .nosotros-text { font-size:clamp(.92rem,1.5vw,1.02rem); line-height:1.82; color:#999; margin-top:22px; }
+  .values-list { list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:32px; }
+  .values-list li { display:flex; align-items:flex-start; gap:14px; font-family:var(--font-cond); font-size:1rem; font-weight:600; letter-spacing:.04em; color:var(--white); }
+  .values-list li::before { content:''; flex-shrink:0; width:18px; height:18px; background:var(--red); clip-path:polygon(0 50%,32% 100%,100% 0%,32% 62%); margin-top:3px; }
+
+  /* ─── HORARIOS ───────────────────────────────────────── */
+  #horarios { background:var(--dark); }
+  .horarios-header { margin-bottom:56px; }
+
+  .schedule-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+
+  .schedule-card {
+    background:var(--mid); padding:32px 28px; border-bottom:3px solid transparent;
+    transition:border-color .3s, background .3s; cursor:default;
+  }
+  .schedule-card:hover { background:#1c1c1c; border-color:var(--red); }
+  .schedule-day { font-family:var(--font-hero); font-size:1.1rem; letter-spacing:.1em; color:var(--red); margin-bottom:4px; }
+  .schedule-name { font-family:var(--font-hero); font-size:1.5rem; letter-spacing:.04em; color:var(--white); margin-bottom:14px; }
+  .schedule-time { font-family:var(--font-cond); font-size:.85rem; font-weight:600; letter-spacing:.1em; color:var(--gray); display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .schedule-time svg { width:13px; height:13px; stroke:var(--red); fill:none; stroke-width:2; }
+  .schedule-level { display:inline-block; font-family:var(--font-cond); font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:4px 10px; background:var(--red-dim); border:1px solid rgba(204,26,26,.3); color:var(--red); margin-top:10px; }
+
+  /* ─── CONTACTO ───────────────────────────────────────── */
+  #contacto { background:var(--black); position:relative; overflow:hidden; }
+  .contacto-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+
+  .contacto-items { display:flex; flex-direction:column; gap:22px; margin-top:40px; }
+  .ci { display:flex; align-items:flex-start; gap:18px; }
+  .ci-icon { width:46px; height:46px; flex-shrink:0; background:var(--red-dim); border:1px solid rgba(204,26,26,.18); display:grid; place-items:center; transition:background .3s; }
+  .ci:hover .ci-icon { background:rgba(204,26,26,.25); }
+  .ci-icon svg { width:19px; height:19px; stroke:var(--red); fill:none; stroke-width:1.6; }
+  .ci-label { font-family:var(--font-cond); font-size:.68rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--red); margin-bottom:4px; }
+  .ci-value { font-size:.92rem; color:var(--white); text-decoration:none; transition:color .25s; line-height:1.5; }
+  .ci-value:hover { color:var(--red); }
+
+  .contacto-right { display:flex; flex-direction:column; gap:20px; justify-content:center; }
+
+  .wa-card { background:#050f08; border:1px solid rgba(37,211,102,.22); padding:36px; text-align:center; }
+  .wa-icon-wrap { width:62px; height:62px; background:rgba(37,211,102,.1); border-radius:50%; display:grid; place-items:center; margin:0 auto 18px; }
+  .wa-card-title { font-family:var(--font-hero); font-size:1.7rem; letter-spacing:.04em; margin-bottom:10px; }
+  .wa-card-sub { font-size:.88rem; color:#777; line-height:1.65; margin-bottom:26px; }
+  .btn-wa { display:inline-flex; align-items:center; gap:10px; width:100%; justify-content:center; background:#25D366; color:#fff; font-family:var(--font-cond); font-size:1rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:15px 36px; text-decoration:none; transition:background .25s, transform .25s; }
+  .btn-wa:hover { background:#1ebe5a; transform:translateY(-2px); }
+
+  .map-card { background:var(--mid); border:1px solid var(--border); padding:26px 28px; }
+  .map-card-title { font-family:var(--font-hero); font-size:1.1rem; letter-spacing:.06em; color:var(--red); margin-bottom:16px; }
+  .map-placeholder { background:var(--dark); border:1px solid var(--border); height:130px; display:grid; place-items:center; position:relative; overflow:hidden; }
+  .map-placeholder svg { width:36px; height:36px; stroke:rgba(204,26,26,.4); fill:none; stroke-width:1.3; }
+  .map-grid-lines { position:absolute; inset:0; background-image:linear-gradient(rgba(204,26,26,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,26,26,.04) 1px,transparent 1px); background-size:30px 30px; }
+  .map-address { font-family:var(--font-cond); font-size:.9rem; font-weight:600; color:var(--gray); margin-top:14px; line-height:1.5; }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer { background:var(--dark); border-top:1px solid var(--border); padding:44px 5vw 28px; }
+  .footer-top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; padding-bottom:28px; border-bottom:1px solid var(--border); margin-bottom:28px; }
+  .footer-logo { font-family:var(--font-hero); font-size:1.5rem; letter-spacing:.1em; color:var(--white); }
+  .footer-logo span { color:var(--red); }
+  .footer-socials { display:flex; gap:10px; }
+  .social-btn { width:38px; height:38px; background:var(--mid); border:1px solid var(--border); display:grid; place-items:center; text-decoration:none; transition:background .25s, border-color .25s, transform .25s; }
+  .social-btn:hover { background:var(--red); border-color:var(--red); transform:translateY(-3px); }
+  .social-btn svg { width:15px; height:15px; stroke:var(--white); fill:none; stroke-width:1.6; }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .footer-copy { font-family:var(--font-cond); font-size:.78rem; letter-spacing:.06em; color:#444; }
+  .footer-motto { font-family:var(--font-hero); font-size:.88rem; letter-spacing:.14em; color:rgba(204,26,26,.3); }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────── */
+  @media(max-width:1024px){ .schedule-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:820px){
+    .nav-links,.nav-cta{display:none}
+    .nav-hamburger{display:flex}
+    .clases-grid{grid-template-columns:1fr}
+    .nosotros-grid{grid-template-columns:1fr}
+    .contacto-grid{grid-template-columns:1fr; gap:48px}
+    body{cursor:auto}
+    .cursor,.cursor-ring{display:none}
+  }
+  @media(max-width:600px){ .schedule-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAV ─────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">
+    <div class="nav-logo-badge">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-5 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H9.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+    </div>
+    HERO <span>BOXING</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#clases">Clases</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" class="nav-cta">Inscríbete</a>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="#clases" onclick="toggleMenu()">Clases</a>
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#horarios" onclick="toggleMenu()">Horarios</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" style="color:var(--red)">Inscríbete →</a>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────────────── -->
+<section id="inicio">
+  <div class="hero-stripes"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-corner-text">HERO</div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Boxing Club · Monterrey, N.L.</div>
+    <h1 class="hero-title">
+      TRAIN<br>
+      <span class="outline">LIKE</span><br>
+      <span class="red">A PRO</span>
+    </h1>
+    <p class="hero-sub">Escuela de boxeo para todos los niveles. Entrena con los mejores, compite como campeón y transforma tu cuerpo y mente.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" class="btn-red">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Inscríbete Ahora
+      </a>
+      <a href="#clases" class="btn-outline">
+        Ver Clases
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2.8K</div>
+        <div class="stat-label">Seguidores</div>
+      </div>
+      <div>
+        <div class="stat-num">★ Liga</div>
+        <div class="stat-label">Estatal de Boxeo</div>
+      </div>
+      <div>
+        <div class="stat-num">ALL</div>
+        <div class="stat-label">Niveles</div>
+      </div>
+      <div>
+        <div class="stat-num">MTY</div>
+        <div class="stat-label">Monterrey, N.L.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TICKER ────────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">BOXEO PROFESIONAL<span class="ticker-star"></span></div>
+    <div class="ticker-item">CLASES PARA TODOS<span class="ticker-star"></span></div>
+    <div class="ticker-item">WE DON'T PLAY BOXING<span class="ticker-star"></span></div>
+    <div class="ticker-item">MONTERREY, N.L.<span class="ticker-star"></span></div>
+    <div class="ticker-item">CARDIO · FUERZA · TÉCNICA<span class="ticker-star"></span></div>
+    <div class="ticker-item">TRAIN LIKE A PRO<span class="ticker-star"></span></div>
+    <div class="ticker-item">BOXEO PROFESIONAL<span class="ticker-star"></span></div>
+    <div class="ticker-item">CLASES PARA TODOS<span class="ticker-star"></span></div>
+    <div class="ticker-item">WE DON'T PLAY BOXING<span class="ticker-star"></span></div>
+    <div class="ticker-item">MONTERREY, N.L.<span class="ticker-star"></span></div>
+    <div class="ticker-item">CARDIO · FUERZA · TÉCNICA<span class="ticker-star"></span></div>
+    <div class="ticker-item">TRAIN LIKE A PRO<span class="ticker-star"></span></div>
+  </div>
+</div>
+
+<!-- ─── CLASES ─────────────────────────────────────────────── -->
+<section id="clases">
+  <div class="clases-header">
+    <div>
+      <p class="section-tag reveal">Programas</p>
+      <h2 class="section-title reveal d1">NUESTRAS<br><span>CLASES</span></h2>
+    </div>
+    <p class="reveal d2" style="max-width:300px; color:var(--gray); line-height:1.7; font-size:.92rem;">
+      Programas diseñados para todos los niveles, desde principiantes hasta competidores.
+    </p>
+  </div>
+  <div class="clases-grid">
+
+    <div class="clase-card reveal d1">
+      <div class="clase-num">01</div>
+      <div class="clase-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h3 class="clase-title">BOXEO BÁSICO</h3>
+      <p class="clase-desc">Aprende desde cero: postura, guardia, movimiento de pies y los golpes fundamentales. Ideal para personas sin experiencia previa que quieren iniciarse en el boxeo.</p>
+    </div>
+
+    <div class="clase-card reveal d2">
+      <div class="clase-num">02</div>
+      <div class="clase-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3 class="clase-title">BOXEO FITNESS</h3>
+      <p class="clase-desc">Quema calorías y tonifica tu cuerpo con rutinas de boxeo de alta intensidad. Sin necesidad de experiencia previa. La forma más divertida de ponerte en forma.</p>
+    </div>
+
+    <div class="clase-card reveal d3">
+      <div class="clase-num">03</div>
+      <div class="clase-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M2 8h4M18 8h4M2 16h4M18 16h4M6 12h12"/></svg>
+      </div>
+      <h3 class="clase-title">COMPETENCIA</h3>
+      <p class="clase-desc">Preparación especializada para boxeadores que desean competir a nivel amateur y profesional. Liga Estatal de Boxeo Nuevo León y torneos nacionales.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── NOSOTROS ──────────────────────────────────────────── -->
+<section id="nosotros">
+  <div class="nosotros-grid">
+
+    <div class="champ-block reveal-l">
+      <div class="champ-accent"></div>
+      <p class="champ-label">Hero Boxing Club · Logros</p>
+      <div class="champ-grid">
+        <div class="champ-cell">
+          <div class="champ-cell-num">2.8K</div>
+          <div class="champ-cell-text">Seguidores</div>
+        </div>
+        <div class="champ-cell">
+          <div class="champ-cell-num">+5</div>
+          <div class="champ-cell-text">Años activos</div>
+        </div>
+        <div class="champ-cell">
+          <div class="champ-cell-num">★ Liga</div>
+          <div class="champ-cell-text">Nuevo León</div>
+        </div>
+        <div class="champ-cell">
+          <div class="champ-cell-num">3</div>
+          <div class="champ-cell-text">Programas</div>
+        </div>
+      </div>
+      <div class="champ-bottom">
+        <div class="champ-bottom-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="champ-bottom-text">Campeones de la Liga Estatal<br>de Boxeo Nuevo León</div>
+      </div>
+    </div>
+
+    <div class="reveal-r">
+      <p class="section-tag">¿Quiénes somos?</p>
+      <h2 class="section-title d1">FORJAMOS<br><span>CAMPEONES</span></h2>
+      <p class="nosotros-text d2">
+        Hero Boxing Club es más que un gimnasio — somos una familia de boxeadores. Nuestros entrenadores te guiarán desde tu primer golpe hasta el ring de competencia. Entrenamos a hombres, mujeres y niños en Monterrey con disciplina, pasión y técnica de alto nivel.
+      </p>
+      <ul class="values-list d3">
+        <li>Entrenadores certificados con experiencia en competencias</li>
+        <li>Instalaciones equipadas para todos los niveles</li>
+        <li>Programa de competencia: Liga Estatal de Boxeo N.L.</li>
+        <li>Clases para niños, jóvenes y adultos</li>
+        <li>Ambiente familiar y motivador</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── HORARIOS ──────────────────────────────────────────── -->
+<section id="horarios">
+  <div class="horarios-header">
+    <p class="section-tag reveal">Planifica tu semana</p>
+    <h2 class="section-title reveal d1">HORARIOS<br><span>Y CLASES</span></h2>
+  </div>
+  <div class="schedule-grid">
+
+    <div class="schedule-card reveal d1">
+      <div class="schedule-day">Lun / Mié / Vie</div>
+      <div class="schedule-name">BÁSICO</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7:00 – 8:00 AM</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5:00 – 6:00 PM</div>
+      <div class="schedule-level">Principiantes</div>
+    </div>
+
+    <div class="schedule-card reveal d2">
+      <div class="schedule-day">Mar / Jue / Sáb</div>
+      <div class="schedule-name">FITNESS</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6:00 – 7:00 AM</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6:00 – 7:00 PM</div>
+      <div class="schedule-level">Todos los niveles</div>
+    </div>
+
+    <div class="schedule-card reveal d3">
+      <div class="schedule-day">Lun a Vie</div>
+      <div class="schedule-name">COMPETENCIA</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7:00 – 9:00 PM</div>
+      <div class="schedule-level">Avanzado</div>
+    </div>
+
+    <div class="schedule-card reveal d1">
+      <div class="schedule-day">Sábado</div>
+      <div class="schedule-name">NIÑOS</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 10:00 – 11:00 AM</div>
+      <div class="schedule-level">Infantil</div>
+    </div>
+
+    <div class="schedule-card reveal d2">
+      <div class="schedule-day">Sábado</div>
+      <div class="schedule-name">SPARRING</div>
+      <div class="schedule-time"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 12:00 – 2:00 PM</div>
+      <div class="schedule-level">Intermedio – Avanzado</div>
+    </div>
+
+    <div class="schedule-card reveal d3" style="display:grid; place-items:center; background:var(--red-dim); border:1.5px dashed rgba(204,26,26,.3)">
+      <div style="text-align:center">
+        <div style="font-family:var(--font-hero);font-size:1.1rem;letter-spacing:.08em;color:var(--red);margin-bottom:10px;">¿DUDAS?</div>
+        <div style="font-family:var(--font-cond);font-size:.88rem;color:var(--gray);line-height:1.6;margin-bottom:18px;">Contáctanos para armar<br>un horario a tu medida</div>
+        <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" class="btn-red" style="font-size:.82rem; padding:10px 22px">Escribir</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CONTACTO ──────────────────────────────────────────── -->
+<section id="contacto">
+  <div class="contacto-grid">
+    <div>
+      <p class="section-tag reveal">Ubícanos</p>
+      <h2 class="section-title reveal d1">ÚNETE AL<br><span>CLUB</span></h2>
+      <div class="contacto-items">
+
+        <div class="ci reveal d2">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="ci-label">Dirección</div>
+            <span class="ci-value">Moctezuma 1420, Monterrey<br>Nuevo León, México 64710</span>
+          </div>
+        </div>
+
+        <div class="ci reveal d3">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.14 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div>
+            <div class="ci-label">Teléfono</div>
+            <a href="tel:528117772872" class="ci-value">81 1777 2872</a>
+          </div>
+        </div>
+
+        <div class="ci reveal d4">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <div class="ci-label">Email</div>
+            <a href="mailto:heroboxingclub@hotmail.com" class="ci-value">heroboxingclub@hotmail.com</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="contacto-right reveal d2">
+      <div class="wa-card">
+        <div class="wa-icon-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <div class="wa-card-title">¿Listo para entrenar?</div>
+        <p class="wa-card-sub">Escríbenos por WhatsApp para conocer precios, horarios y comenzar tu primera clase de prueba.</p>
+        <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" class="btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+
+      <div class="map-card">
+        <div class="map-card-title">UBICACIÓN</div>
+        <div class="map-placeholder">
+          <div class="map-grid-lines"></div>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <p class="map-address">Moctezuma 1420, Monterrey, México 64710<br>
+          <span style="color:var(--red);font-size:.8rem;">Busca en Google Maps: Hero Boxing Club</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">HERO <span>BOXING</span> CLUB</div>
+    <div class="footer-socials">
+      <a href="#" class="social-btn" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.facebook.com/HeroBoxingClub" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="social-btn" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+      </a>
+      <a href="https://wa.me/528117772872" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Hero Boxing Club · Moctezuma 1420, Monterrey, N.L.</p>
+    <p class="footer-motto">WE DON'T PLAY BOXING</p>
+  </div>
+</footer>
+
+<!-- ─── JS ────────────────────────────────────────────────── -->
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+  });
+  (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button,.clase-card,.schedule-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ cursor.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.transform='translate(-50%,-50%) scale(1.5)'; ring.style.opacity='.2'; });
+    el.addEventListener('mouseleave',()=>{ cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.45'; });
+  });
+
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>40));
+
+  function toggleMenu(){ document.getElementById('mobileNav').classList.toggle('open'); }
+
+  const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{threshold:.12});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

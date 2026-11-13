@@ -1,0 +1,528 @@
+{
+  "updatedAt": "2025-09-06T19:12:54.000Z",
+  "createdAt": "2025-08-28T19:49:17.313Z",
+  "id": "Vf5m966Qb2rJgD20",
+  "name": "Consultas y modificaciones lavadero",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"mensaje\": \"hola como estas\",\n  \"id\": \"3A2ABC2F76365B55A7CE\"\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -176,
+        0
+      ],
+      "id": "96277c24-bca4-4485-8001-aa3034fe4240",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Mesnaje del usuario:  {{ $json.mensaje }}",
+        "options": {
+          "systemMessage": "=Eres Beto, asistente personal de Juanma. Tu tarea es modificar y/o consultar un excel.\n\nLa fecha de hoy es: {{ $now }}\n\nHerramientas disponibles: \n\n- **think**  \n  Usar esta herramienta SIEMPRE. Resume mentalmente el problema y planifica la respuesta.\n\n- **modificar_modo** \nVas a usar esta herramienta cuando el usuario quiera cambiar el modo de algun contacto. Las opciones de cambio son \"Humano\" o \"Bot.\"\n\n- **modificar_modo_ocupado**\nVas a usar esta herramienta cuando el usuario quiera cambiar el modo de ocupado. En la parte de mensaje va de que fecha a que fecha va a estar inactivo el negocio y en la parte de activo va \"Si\" o \"No\".\n\n- **consultar_clientes**\nVas a usar esta herramienta si el usuario te hace alguna pregunta sobre los clientes, como por ejemlplo: Cuantos clientes hay registrados? \n\n- **consultar_turnos**\nVas a usar esta herramienta si el usuario te pregunta sobre los turnos o citas que tiene agendadas, como por ejemplo: que tengo agendado para hoy? cuantos turnos tengo hoy? que hay para el viernes?"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ccdd7330-cfdc-4d65-9fca-552645cc8ab1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        336
+      ],
+      "id": "23a8676e-39f2-4a51-be36-73ca8ef40fab",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "openAiApi credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Herramienta para reflexionar y planificar antes de responder. Úsala siempre para analizar el contexto, entender la intención del usuario y decidir los próximos pasos."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        384
+      ],
+      "id": "7d11e9fd-b154-4763-b7d2-d0373440a5a7",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_DOCUMENT_ID",
+          "mode": "list",
+          "cachedResultName": "CRM Lav.Mitre",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1669694889,
+          "mode": "list",
+          "cachedResultName": "Modo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre__using_to_match_', `Las mayusculas o minusculas no afectan!`, 'string') }}",
+            "Modo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Modo', `Cambia al valor que te indico el usuario`, 'string') }}"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Modo",
+              "displayName": "Modo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        368,
+        432
+      ],
+      "id": "39c60bba-388a-4dae-b0f4-d55a2897626f",
+      "name": "modificar_modo",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "googleSheetsOAuth2Api credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "integrations-api",
+        "operation": "evolution-bot",
+        "instanceName": "Juanma Lavadero",
+        "resourceForEvolutionBot": "changeStatusEvolutionBot",
+        "evolutionBotId": "={{ $json.data.key.id }}",
+        "remoteJid": "5490000000000@s.whatsapp.net",
+        "status": "closed"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        0
+      ],
+      "id": "6b621cdb-e690-48a3-8a8e-ac248292704d",
+      "name": "Evolution bot",
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "read-messages",
+        "instanceName": "Juanma Lavadero",
+        "remoteJid": "5490000000000@s.whatsapp.net",
+        "messageId": "={{ $('When Executed by Another Workflow').item.json.id }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        976,
+        0
+      ],
+      "id": "208f45ab-8310-42f6-bef1-0ed45ab8a72f",
+      "name": "Mercar mensajes como leidos",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Juanma Lavadero",
+        "remoteJid": "5490000000000@s.whatsapp.net",
+        "messageText": "={{ $('AI Agent').item.json.output }}",
+        "options_message": {
+          "delay": 5000
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        0
+      ],
+      "id": "dfd7b4cd-31df-4c87-8106-aa56842cea97",
+      "name": "Cerrar interaccion",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_DOCUMENT_ID",
+          "mode": "list",
+          "cachedResultName": "CRM Lav.Mitre",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 351758704,
+          "mode": "list",
+          "cachedResultName": "Modo ocupado",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Mensaje": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Mensaje', `De que fecha a que fecha va a estar inactivo el negocio`, 'string') }}",
+            "Activo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Activo', `Opciones: \n-\"Si\"\n-\"No\"`, 'string') }}",
+            "row_number": 2
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Mensaje",
+              "displayName": "Mensaje",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Activo",
+              "displayName": "Activo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        512,
+        448
+      ],
+      "id": "e5493074-3a1f-40a6-a4f4-bf03f59a777b",
+      "name": "modificar_modo_ocupado",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "googleSheetsOAuth2Api credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_DOCUMENT_ID",
+          "mode": "list",
+          "cachedResultName": "CRM Lav.Mitre",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_DOCUMENT_ID/edit"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        400
+      ],
+      "id": "873bbdb1-b651-4066-be3d-653309273248",
+      "name": "consultar_clientes",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "googleSheetsOAuth2Api credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_CALENDAR_ID@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "Lavadero Mitre"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        352
+      ],
+      "id": "2aaa95e8-16be-4ba1-9aa6-8d04f6e52fa1",
+      "name": "consultar_turnos",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "googleCalendarOAuth2Api credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        112,
+        352
+      ],
+      "id": "2b6b3bb2-43d7-4442-9252-cf2b637893dd",
+      "name": "Simple Memory"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "modificar_modo": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mercar mensajes como leidos": {
+      "main": [
+        [
+          {
+            "node": "Cerrar interaccion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cerrar interaccion": {
+      "main": [
+        [
+          {
+            "node": "Evolution bot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Mercar mensajes como leidos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "modificar_modo_ocupado": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_clientes": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_turnos": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

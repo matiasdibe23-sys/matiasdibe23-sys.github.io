@@ -1,0 +1,193 @@
+{
+  "updatedAt": "2025-09-05T02:32:08.000Z",
+  "createdAt": "2025-08-26T16:49:31.213Z",
+  "id": "CQ0pytqaJhbmoiFJ",
+  "name": "Agente ausencia lavadero",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2688,
+        1696
+      ],
+      "id": "a7e690e6-3fa9-4287-b522-15f440517bf4",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "openAiApi credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "integrations-api",
+        "operation": "evolution-bot",
+        "instanceName": "={{ $('Start').item.json.body_instance }}",
+        "resourceForEvolutionBot": "changeStatusEvolutionBot",
+        "evolutionBotId": "={{ $('Start').item.json.ID }}",
+        "remoteJid": "={{ $('Start').item.json.body_data_key_remoteJid_split }}",
+        "status": "closed"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -2048,
+        1536
+      ],
+      "id": "843f83ae-d1da-4cdb-9129-9e1905fda8c8",
+      "name": "Evolution bot1",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Mensaje del usuario: {{ $('Start').item.json.body_data_message_conversation }}",
+        "options": {
+          "systemMessage": "=Eres Beto, asistente argentino del Lavadero Mitre.\nSaluda si te saludan, despídete si se despiden.\nInforma siempre que el lavadero no estará en servicio en las fechas: {{ $json.Mensaje }}.\nSi preguntan otra cosa, recuerda amablemente que el lavadero está cerrado hasta después de esas fechas.\n\nReglas:\n-NO OFREZCAS CITAS. Decile al usuario que por favor se comunique despues de la fecha mencionada.\n-No ofrezcas ayuda en nada mas, tu UNICA tarea es comunicar que el negocio esta inactivo."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -2624,
+        1504
+      ],
+      "id": "201c97f4-6415-458b-b6db-ea4b2b4a4c3d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Start').item.json.body_instance }}",
+        "remoteJid": "={{ $('Start').item.json.body_data_key_remoteJid_split }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {
+          "delay": "={{ 5000 }}"
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -2224,
+        1504
+      ],
+      "id": "257dcbdc-a7b1-4b51-86a8-c739d518cc76",
+      "name": "Cerrar interaccion1",
+      "retryOnFail": true,
+      "credentials": {
+        "evolutionApi": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "evolutionApi credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "body_data_message_conversation",
+              "type": "any"
+            },
+            {
+              "name": "Mensaje",
+              "type": "any"
+            },
+            {
+              "name": "body_data_key_remoteJid_split",
+              "type": "any"
+            },
+            {
+              "name": "body_instance",
+              "type": "any"
+            },
+            {
+              "name": "ID"
+            }
+          ]
+        }
+      },
+      "id": "95576667-c611-4d10-9b08-19796900bae2",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -2832,
+        1504
+      ]
+    }
+  ],
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Cerrar interaccion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cerrar interaccion1": {
+      "main": [
+        [
+          {
+            "node": "Evolution bot1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": null,
+  "tags": []
+}
