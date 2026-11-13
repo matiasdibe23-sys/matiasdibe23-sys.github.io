@@ -4,7 +4,7 @@
   "id": "i7fgup4NkO2OcmW8",
   "name": "Agente de reservas lavadero",
   "description": null,
-  "active": true,
+  "active": false,
   "isArchived": false,
   "nodes": [
     {
@@ -1726,19 +1726,19 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "YOUR-WEBHOOK-PATH",
-        "options": {}
+        "content": "## Webhook trigger goes here\n\nThe original Webhook node was removed from this public export because its URL is private.\n\n**To use this workflow:** add a Webhook node (POST) here and connect it to: `If5`.\n\nProtect it with Header Auth.",
+        "height": 240,
+        "width": 320,
+        "color": 3
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
+      "id": "48f4031e-7398-4a95-a9ab-4ae73f8dceee",
+      "name": "Sticky Note: webhook goes here",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
       "position": [
         -4912,
         976
-      ],
-      "id": "25fe5809-e23d-4829-802f-5e68b8747596",
-      "name": "Webhook1",
-      "webhookId": "00000000-0000-0000-0000-000000000000"
+      ]
     }
   ],
   "connections": {
@@ -2310,17 +2310,6 @@
         [
           {
             "node": "Execute Workflow",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook1": {
-      "main": [
-        [
-          {
-            "node": "If5",
             "type": "main",
             "index": 0
           }

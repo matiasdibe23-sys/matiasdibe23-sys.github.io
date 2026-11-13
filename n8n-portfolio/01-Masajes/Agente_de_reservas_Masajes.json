@@ -4,7 +4,7 @@
   "id": "4HQJjLlvs0a9YRqR",
   "name": "Agente de reservas Masajes",
   "description": null,
-  "active": true,
+  "active": false,
   "isArchived": false,
   "nodes": [
     {
@@ -1451,22 +1451,6 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "YOUR-WEBHOOK-PATH",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -7312,
-        -448
-      ],
-      "id": "f3d40be3-e119-468b-bdaa-3b869a8840b0",
-      "name": "Webhook1",
-      "webhookId": "00000000-0000-0000-0000-000000000000"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -1733,6 +1717,22 @@
       ],
       "id": "548ce0ed-6fdd-4281-b0b6-44e8d32cdb9a",
       "name": "citas"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook trigger goes here\n\nThe original Webhook node was removed from this public export because its URL is private.\n\n**To use this workflow:** add a Webhook node (POST) here and connect it to: the first node of the flow.\n\nProtect it with Header Auth.",
+        "height": 240,
+        "width": 320,
+        "color": 3
+      },
+      "id": "8149c19b-fa18-45f7-8fa1-45660458efdb",
+      "name": "Sticky Note: webhook goes here",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -7312,
+        -448
+      ]
     }
   ],
   "connections": {
@@ -2259,11 +2259,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Webhook1": {
-      "main": [
-        []
       ]
     },
     "Edit Fields9": {

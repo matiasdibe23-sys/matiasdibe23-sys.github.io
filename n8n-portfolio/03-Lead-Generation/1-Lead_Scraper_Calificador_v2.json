@@ -4,26 +4,9 @@
   "id": "ja5qxzj00U1BUqfK",
   "name": "1 - Lead Scraper + Calificador v2",
   "description": null,
-  "active": true,
+  "active": false,
   "isArchived": false,
   "nodes": [
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "apify-leads",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "dd000001-0001-0001-0001-000000000001",
-      "name": "Recibir JSON de Apify",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        240,
-        304
-      ],
-      "webhookId": "00000000-0000-0000-0000-000000000000"
-    },
     {
       "parameters": {
         "jsCode": "// El JSON de Apify viene en el body del webhook\n// Puede ser un array directo o estar dentro de body\nconst raw = $json.body || $json;\nconst results = Array.isArray(raw) ? raw : [raw];\n\nconst SCORE_MINIMO = 7;\nconst places = [];\n\nfor (const place of results) {\n  if (!place.title || place.permanentlyClosed) continue;\n\n  // Construir direccion desde street + city\n  const direccion = [place.street, place.city, place.state, place.countryCode]\n    .filter(Boolean).join(', ');\n\n  // Extraer email\n  const email = (place.emails || [])[0]?.email\n    || (place.emails || [])[0]\n    || '';\n\n  places.push({\n    json: {\n      place_id:  place.placeId || place.title,\n      nombre:    place.title || '',\n      tipo:      place.categoryName || (place.categories||[])[0] || '',\n      direccion: direccion || place.address || '',\n      telefono:  (place.phone||place.phoneUnformatted||'').replace(/\\s/g,''),\n      website:   place.website || '',\n      email:     email,\n      rating:    place.totalScore || 0,\n      reviews:   place.reviewsCount || 0,\n      maps_url:  place.url || '',\n      fuente:    'Apify/Google Maps',\n      scoreMinimo: SCORE_MINIMO\n    }\n  });\n}\n\nreturn places;"
@@ -186,20 +169,25 @@
           "name": "openAiApi credential"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Webhook trigger goes here\n\nThe original Webhook node was removed from this public export because its URL is private.\n\n**To use this workflow:** add a Webhook node (POST) here and connect it to: `Extraer Leads`.\n\nProtect it with Header Auth.",
+        "height": 240,
+        "width": 320,
+        "color": 3
+      },
+      "id": "926eabd5-fdd9-4714-9311-4f8b2b1d3fc2",
+      "name": "Sticky Note: webhook goes here",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        304
+      ]
     }
   ],
   "connections": {
-    "Recibir JSON de Apify": {
-      "main": [
-        [
-          {
-            "node": "Extraer Leads",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Extraer Leads": {
       "main": [
         [
